@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQ3-aM-MYh" userLabel="backView">
-                                <rect key="frame" x="19.5" y="44" width="375" height="38.5"/>
+                                <rect key="frame" x="19.5" y="66" width="375" height="38.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4F9-xo-1Hh">
-                                        <rect key="frame" x="20" y="0.0" width="48" height="34"/>
+                                        <rect key="frame" x="20" y="2" width="48" height="34"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Button" image="Vector"/>
                                         <buttonConfiguration key="configuration" style="plain" image="Vector" title=" "/>
@@ -33,17 +33,17 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMS-bg-qaU">
-                                        <rect key="frame" x="326" y="0.0" width="49" height="31"/>
+                                        <rect key="frame" x="326" y="3.5" width="49" height="31"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="edit"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Edit"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="xMS-bg-qaU" secondAttribute="trailing" id="1f8-jh-Uyq"/>
+                                    <constraint firstItem="xMS-bg-qaU" firstAttribute="centerY" secondItem="aQ3-aM-MYh" secondAttribute="centerY" id="9XF-VJ-gvw"/>
                                     <constraint firstItem="zdm-gR-lNB" firstAttribute="centerY" secondItem="aQ3-aM-MYh" secondAttribute="centerY" id="B7l-aU-JWj"/>
-                                    <constraint firstItem="xMS-bg-qaU" firstAttribute="top" secondItem="aQ3-aM-MYh" secondAttribute="top" id="MDT-iW-Gpd"/>
-                                    <constraint firstItem="4F9-xo-1Hh" firstAttribute="top" secondItem="aQ3-aM-MYh" secondAttribute="top" id="gXk-R3-TOj"/>
+                                    <constraint firstItem="4F9-xo-1Hh" firstAttribute="centerY" secondItem="aQ3-aM-MYh" secondAttribute="centerY" id="jrn-Mh-PPA"/>
                                     <constraint firstItem="4F9-xo-1Hh" firstAttribute="leading" secondItem="aQ3-aM-MYh" secondAttribute="leading" constant="20" symbolic="YES" id="s8H-Bq-gka"/>
                                     <constraint firstItem="zdm-gR-lNB" firstAttribute="centerX" secondItem="aQ3-aM-MYh" secondAttribute="centerX" id="tJR-Vn-NYt"/>
                                 </constraints>
@@ -53,9 +53,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="aQ3-aM-MYh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="A3D-wl-ULl"/>
-                            <constraint firstItem="aQ3-aM-MYh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="BYf-Ds-pag"/>
                             <constraint firstItem="aQ3-aM-MYh" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="40:932" id="QYO-6C-AAb"/>
                             <constraint firstItem="aQ3-aM-MYh" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="390:430" id="aPL-nC-4B7"/>
+                            <constraint firstItem="aQ3-aM-MYh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" multiplier="15:10" id="ol8-vb-41w"/>
                         </constraints>
                     </view>
                 </viewController>
