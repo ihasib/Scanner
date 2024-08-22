@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WeScan
 
 class ViewController: UIViewController {
 
@@ -15,5 +16,25 @@ class ViewController: UIViewController {
     }
 
 
+    override func viewDidAppear(_ animated: Bool) {
+        let scannerViewController = ImageScannerController(delegate: self)
+        scannerViewController.modalPresentationStyle = .fullScreen
+        present(scannerViewController, animated: true)
+    }
 }
 
+extension ViewController: ImageScannerControllerDelegate {
+    func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
+        print(#function)
+    }
+    
+    func imageScannerControllerDidCancel(_ scanner: ImageScannerController) {
+        print(#function)
+    }
+    
+    func imageScannerController(_ scanner: ImageScannerController, didFailWithError error: Error) {
+        print(#function)
+    }
+    
+    
+}

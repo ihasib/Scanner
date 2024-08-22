@@ -13,6 +13,7 @@
 		644EDFEB2C764F4600DF0938 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644EDFE92C764F4600DF0938 /* Main.storyboard */; };
 		644EDFED2C764F4900DF0938 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 644EDFEC2C764F4900DF0938 /* Assets.xcassets */; };
 		644EDFF02C764F4900DF0938 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644EDFEE2C764F4900DF0938 /* LaunchScreen.storyboard */; };
+		6452FBD32C77BC2F001475F4 /* WeScan in Frameworks */ = {isa = PBXBuildFile; productRef = 6452FBD22C77BC2F001475F4 /* WeScan */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6452FBD32C77BC2F001475F4 /* WeScan in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,9 @@
 			dependencies = (
 			);
 			name = Scanner;
+			packageProductDependencies = (
+				6452FBD22C77BC2F001475F4 /* WeScan */,
+			);
 			productName = Scanner;
 			productReference = 644EDFE02C764F4600DF0938 /* Scanner.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +116,9 @@
 				Base,
 			);
 			mainGroup = 644EDFD72C764F4600DF0938;
+			packageReferences = (
+				6452FBD12C77BC2F001475F4 /* XCRemoteSwiftPackageReference "WeScan" */,
+			);
 			productRefGroup = 644EDFE12C764F4600DF0938 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -362,6 +370,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6452FBD12C77BC2F001475F4 /* XCRemoteSwiftPackageReference "WeScan" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WeTransfer/WeScan";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6452FBD22C77BC2F001475F4 /* WeScan */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6452FBD12C77BC2F001475F4 /* XCRemoteSwiftPackageReference "WeScan" */;
+			productName = WeScan;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 644EDFD82C764F4600DF0938 /* Project object */;
 }
