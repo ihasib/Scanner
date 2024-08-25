@@ -15,12 +15,12 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
-    override func viewDidAppear(_ animated: Bool) {
+    @IBAction func scanButtonTapped(_ sender: Any) {
         let scannerViewController = ImageScannerController(delegate: self)
         scannerViewController.modalPresentationStyle = .fullScreen
         present(scannerViewController, animated: true)
     }
+    
 }
 
 extension ViewController: ImageScannerControllerDelegate {

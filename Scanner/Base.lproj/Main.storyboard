@@ -82,6 +82,17 @@
                                     <constraint firstItem="4YV-u8-jTl" firstAttribute="centerY" secondItem="Maa-hQ-YPF" secondAttribute="centerY" id="s2D-JX-JhF"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2h-SB-hMC">
+                                <rect key="frame" x="150" y="578.5" width="114" height="114"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="m2h-SB-hMC" secondAttribute="height" multiplier="1:1" id="dxU-Tp-1BX"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="Group 949" title=" "/>
+                                <connections>
+                                    <action selector="scanButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DEb-bU-evS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -90,6 +101,9 @@
                             <constraint firstItem="Maa-hQ-YPF" firstAttribute="height" secondItem="aQ3-aM-MYh" secondAttribute="height" id="9y0-5j-OUy"/>
                             <constraint firstItem="aQ3-aM-MYh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="A3D-wl-ULl"/>
                             <constraint firstItem="Maa-hQ-YPF" firstAttribute="width" secondItem="aQ3-aM-MYh" secondAttribute="width" id="CSS-mG-DES"/>
+                            <constraint firstItem="m2h-SB-hMC" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.275362" id="CWP-1u-NPe"/>
+                            <constraint firstAttribute="bottom" secondItem="m2h-SB-hMC" secondAttribute="bottom" multiplier="932:749" constant="34" id="Cva-rn-96r"/>
+                            <constraint firstItem="m2h-SB-hMC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EHR-sl-Qvz"/>
                             <constraint firstItem="aQ3-aM-MYh" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="40:932" id="QYO-6C-AAb"/>
                             <constraint firstItem="Maa-hQ-YPF" firstAttribute="top" secondItem="Yqm-s9-3cb" secondAttribute="bottom" multiplier="1.2" id="aGw-xB-xeY"/>
                             <constraint firstItem="aQ3-aM-MYh" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="390:430" id="aPL-nC-4B7"/>
@@ -107,6 +121,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Group 949" width="90" height="90"/>
         <image name="Group 962" width="25" height="15"/>
         <image name="Group 963" width="37" height="21"/>
         <image name="Vector" width="20" height="20"/>
