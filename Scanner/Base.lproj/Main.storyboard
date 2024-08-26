@@ -82,6 +82,16 @@
                                     <constraint firstItem="4YV-u8-jTl" firstAttribute="centerY" secondItem="Maa-hQ-YPF" secondAttribute="centerY" id="s2D-JX-JhF"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uxs-dB-7sr">
+                                <rect key="frame" x="20" y="279" width="74.666666666666671" height="59.666666666666686"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="uxs-dB-7sr" secondAttribute="height" multiplier="75:60" id="hkK-5e-6LV"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="Vector-1">
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2h-SB-hMC">
                                 <rect key="frame" x="169.33333333333334" y="744" width="89.333333333333343" height="89.666666666666629"/>
                                 <constraints>
@@ -109,6 +119,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="uxs-dB-7sr" firstAttribute="top" secondItem="Maa-hQ-YPF" secondAttribute="bottom" multiplier="210:190" id="187-6k-OEk"/>
+                            <constraint firstItem="uxs-dB-7sr" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="75:430" id="2lb-fZ-6hf"/>
                             <constraint firstItem="Yqm-s9-3cb" firstAttribute="width" secondItem="aQ3-aM-MYh" secondAttribute="width" id="6rS-Jy-phE"/>
                             <constraint firstItem="Maa-hQ-YPF" firstAttribute="height" secondItem="aQ3-aM-MYh" secondAttribute="height" id="9y0-5j-OUy"/>
                             <constraint firstItem="aQ3-aM-MYh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="A3D-wl-ULl"/>
@@ -121,6 +133,7 @@
                             <constraint firstItem="Maa-hQ-YPF" firstAttribute="top" secondItem="Yqm-s9-3cb" secondAttribute="bottom" multiplier="1.2" id="aGw-xB-xeY"/>
                             <constraint firstItem="aQ3-aM-MYh" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="390:430" id="aPL-nC-4B7"/>
                             <constraint firstItem="eqK-gg-g6j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="efM-KE-Aah"/>
+                            <constraint firstItem="uxs-dB-7sr" firstAttribute="leading" secondItem="Maa-hQ-YPF" secondAttribute="leading" id="fG1-Ay-WD5"/>
                             <constraint firstItem="Yqm-s9-3cb" firstAttribute="height" secondItem="aQ3-aM-MYh" secondAttribute="height" id="fT6-Na-52x"/>
                             <constraint firstItem="m2h-SB-hMC" firstAttribute="bottom" secondItem="bsR-yo-mKA" secondAttribute="top" multiplier="839:859" id="jij-FW-SVH"/>
                             <constraint firstItem="Yqm-s9-3cb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nwT-Xk-T7b"/>
@@ -141,6 +154,7 @@
         <image name="Group 962" width="25" height="15"/>
         <image name="Group 963" width="37" height="21"/>
         <image name="Vector" width="20" height="20"/>
+        <image name="Vector-1" width="75" height="60"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
