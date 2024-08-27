@@ -27,7 +27,7 @@
                                         <buttonConfiguration key="configuration" style="plain" image="Vector" title=" "/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Documents" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdm-gR-lNB">
-                                        <rect key="frame" x="150.66666666666666" y="9.3333333333333286" width="87" height="21"/>
+                                        <rect key="frame" x="150.33333333333334" y="9.6666666666666696" width="87.333333333333343" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -56,7 +56,7 @@
                                 <rect key="frame" x="20" y="212.66666666666666" width="388" height="39.666666666666657"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEs-03-BGP">
-                                        <rect key="frame" x="0.0" y="9.3333333333333428" width="57" height="21"/>
+                                        <rect key="frame" x="0.0" y="9.6666666666666838" width="56.666666666666664" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -104,17 +104,68 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Scan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsR-yo-mKA">
-                                <rect key="frame" x="169" y="853.33333333333337" width="90" height="21"/>
+                                <rect key="frame" x="169.33333333333334" y="853.33333333333337" width="89.666666666666657" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click the Plus button to scan Your Document" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqK-gg-g6j">
-                                <rect key="frame" x="44" y="886.66666666666663" width="340" height="21"/>
+                                <rect key="frame" x="44.333333333333343" y="886" width="339.33333333333326" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6mC-g8-10b" userLabel="slideView">
+                                <rect key="frame" x="448" y="680.33333333333337" width="388" height="180"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zpL-QM-2CN">
+                                        <rect key="frame" x="-2.6666666666666856" y="-74.666666666666615" width="393.33333333333331" height="140"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnx-C0-jXc">
+                                                <rect key="frame" x="0.0" y="0.0" width="131" height="140"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="lnx-C0-jXc" secondAttribute="height" multiplier="103:110" id="ilr-xF-QsX"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="Group 956" title=" "/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8By-A1-xjP">
+                                                <rect key="frame" x="131.00000000000006" y="0.0" width="131.33333333333331" height="140"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="Group 956" title=" "/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fk8-1u-e20">
+                                                <rect key="frame" x="262.33333333333331" y="0.0" width="131" height="140"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="Group 956" title=" "/>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="lnx-C0-jXc" firstAttribute="width" secondItem="zpL-QM-2CN" secondAttribute="width" multiplier="103:390" constant="27.240170940170941" id="3hV-SN-nxq"/>
+                                            <constraint firstItem="fk8-1u-e20" firstAttribute="height" secondItem="lnx-C0-jXc" secondAttribute="height" id="VWg-24-hgL"/>
+                                            <constraint firstItem="8By-A1-xjP" firstAttribute="width" secondItem="lnx-C0-jXc" secondAttribute="width" id="dXf-Qa-Mv8"/>
+                                            <constraint firstItem="fk8-1u-e20" firstAttribute="width" secondItem="lnx-C0-jXc" secondAttribute="width" id="eJ6-bj-SaF"/>
+                                            <constraint firstItem="8By-A1-xjP" firstAttribute="height" secondItem="lnx-C0-jXc" secondAttribute="height" id="qWd-VW-UvF"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E8l-E1-UxO">
+                                        <rect key="frame" x="159.66666666666663" y="144" width="68.666666666666686" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rZ2-28-cKz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="E8l-E1-UxO" secondAttribute="bottom" constant="5" id="BJ0-1A-guq"/>
+                                    <constraint firstItem="zpL-QM-2CN" firstAttribute="centerX" secondItem="6mC-g8-10b" secondAttribute="centerX" id="G53-14-zaY"/>
+                                    <constraint firstAttribute="width" secondItem="6mC-g8-10b" secondAttribute="height" multiplier="390:181" id="b1m-fw-o7U"/>
+                                    <constraint firstItem="zpL-QM-2CN" firstAttribute="width" secondItem="6mC-g8-10b" secondAttribute="width" multiplier="1.01375" id="ijh-io-rRF"/>
+                                    <constraint firstItem="E8l-E1-UxO" firstAttribute="centerX" secondItem="6mC-g8-10b" secondAttribute="centerX" id="qyw-aR-Xw5"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -126,12 +177,15 @@
                             <constraint firstItem="aQ3-aM-MYh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="A3D-wl-ULl"/>
                             <constraint firstItem="Maa-hQ-YPF" firstAttribute="width" secondItem="aQ3-aM-MYh" secondAttribute="width" id="CSS-mG-DES"/>
                             <constraint firstItem="m2h-SB-hMC" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="90:430" id="CWP-1u-NPe" userLabel=".width = 0.275362 × width"/>
+                            <constraint firstItem="6mC-g8-10b" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" multiplier="866:932" id="Cfm-aS-mOv"/>
                             <constraint firstAttribute="bottom" secondItem="m2h-SB-hMC" secondAttribute="bottom" multiplier="932:839" id="Cva-rn-96r"/>
                             <constraint firstItem="m2h-SB-hMC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EHR-sl-Qvz"/>
+                            <constraint firstItem="6mC-g8-10b" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="trailing" multiplier="450:430" id="Pai-rL-3uk"/>
                             <constraint firstItem="aQ3-aM-MYh" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="40:932" id="QYO-6C-AAb"/>
                             <constraint firstItem="bsR-yo-mKA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aCI-EJ-vV3"/>
                             <constraint firstItem="Maa-hQ-YPF" firstAttribute="top" secondItem="Yqm-s9-3cb" secondAttribute="bottom" multiplier="1.2" id="aGw-xB-xeY"/>
                             <constraint firstItem="aQ3-aM-MYh" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="390:430" id="aPL-nC-4B7"/>
+                            <constraint firstItem="6mC-g8-10b" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="390:430" id="eCb-WQ-Avr"/>
                             <constraint firstItem="eqK-gg-g6j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="efM-KE-Aah"/>
                             <constraint firstItem="uxs-dB-7sr" firstAttribute="leading" secondItem="Maa-hQ-YPF" secondAttribute="leading" id="fG1-Ay-WD5"/>
                             <constraint firstItem="Yqm-s9-3cb" firstAttribute="height" secondItem="aQ3-aM-MYh" secondAttribute="height" id="fT6-Na-52x"/>
@@ -143,6 +197,13 @@
                             <constraint firstItem="eqK-gg-g6j" firstAttribute="top" secondItem="bsR-yo-mKA" secondAttribute="bottom" multiplier="882:870" id="xlL-Kt-g7k"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="clickThePlusLabel" destination="eqK-gg-g6j" id="qW8-oO-Hjg"/>
+                        <outlet property="slideView" destination="6mC-g8-10b" id="RyI-pg-DQo"/>
+                        <outlet property="slideViewleadAnchor" destination="Pai-rL-3uk" id="LJu-gu-T5O"/>
+                        <outlet property="tapScanButton" destination="m2h-SB-hMC" id="hyZ-VT-0No"/>
+                        <outlet property="tapToScanLabel" destination="bsR-yo-mKA" id="MDy-q2-9Sc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -151,6 +212,7 @@
     </scenes>
     <resources>
         <image name="Group 949" width="90" height="90"/>
+        <image name="Group 956" width="103" height="110"/>
         <image name="Group 962" width="25" height="15"/>
         <image name="Group 963" width="37" height="21"/>
         <image name="Vector" width="20" height="20"/>
