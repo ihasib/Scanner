@@ -15,17 +15,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var tapScanButton: UIButton!
     @IBOutlet weak var tapToScanLabel: UILabel!
     @IBOutlet weak var clickThePlusLabel: UILabel!
-    
+    @IBOutlet weak var cameraView: UIView!
+
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.slideViewleadAnchor.constant = self.view.frame.width
         
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.5) {
             self.tapScanButton.alpha = 1
             self.tapToScanLabel.alpha = 1
             self.clickThePlusLabel.alpha = 1
         }
         
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
     }
@@ -33,37 +34,45 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(handleCameraTap))
+        cameraView.addGestureRecognizer(gesture)
+    }
+
+    @objc func handleCameraTap() {
+        print(#function)
+        let scannerViewController = ImageScannerController(delegate: self)
+        scannerViewController.modalPresentationStyle = .fullScreen
+        present(scannerViewController, animated: true)
     }
 
     @IBAction func scanButtonTapped(_ sender: Any) {
         self.slideViewleadAnchor.constant = -self.view.frame.width
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
         
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.5) {
             self.tapScanButton.alpha = 0
             self.tapToScanLabel.alpha = 0
             self.clickThePlusLabel.alpha = 0
         }
-//        let scannerViewController = ImageScannerController(delegate: self)
-//        scannerViewController.modalPresentationStyle = .fullScreen
-//        present(scannerViewController, animated: true)
     }
-    
-    override func viewDidLayoutSubviews() {
-        print(#function)
-    }
-    
 }
 
 extension ViewController: ImageScannerControllerDelegate {
     func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
         print(#function)
+        let image = results.croppedScan.image
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(didPhotoSave), nil)
     }
-    
+
+    @objc func didPhotoSave(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        print(#function)
+    }
+
     func imageScannerControllerDidCancel(_ scanner: ImageScannerController) {
         print(#function)
+        scanner.dismiss(animated: true)
     }
     
     func imageScannerController(_ scanner: ImageScannerController, didFailWithError error: Error) {
