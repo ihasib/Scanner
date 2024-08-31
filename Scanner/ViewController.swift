@@ -62,7 +62,11 @@ class ViewController: UIViewController {
 extension ViewController: ImageScannerControllerDelegate {
     func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
         print(#function)
-        let image = results.croppedScan.image
+        guard let scanImage = results.enhancedScan else {
+            return
+        }
+        let image =  scanImage.image
+        scanner.dismiss(animated: true)
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(didPhotoSave), nil)
     }
 
