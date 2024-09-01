@@ -13,10 +13,11 @@
 		644EDFEB2C764F4600DF0938 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644EDFE92C764F4600DF0938 /* Main.storyboard */; };
 		644EDFED2C764F4900DF0938 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 644EDFEC2C764F4900DF0938 /* Assets.xcassets */; };
 		644EDFF02C764F4900DF0938 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644EDFEE2C764F4900DF0938 /* LaunchScreen.storyboard */; };
-		6452FBD32C77BC2F001475F4 /* WeScan in Frameworks */ = {isa = PBXBuildFile; productRef = 6452FBD22C77BC2F001475F4 /* WeScan */; };
+		64B905822C846C160062AA01 /* WeScan in Frameworks */ = {isa = PBXBuildFile; productRef = 64B905812C846C160062AA01 /* WeScan */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		642C149A2C846B8B00826219 /* WeScan-1.8.1 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "WeScan-1.8.1"; sourceTree = "<group>"; };
 		644EDFE02C764F4600DF0938 /* Scanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		644EDFE32C764F4600DF0938 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		644EDFE52C764F4600DF0938 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,18 +33,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6452FBD32C77BC2F001475F4 /* WeScan in Frameworks */,
+				64B905822C846C160062AA01 /* WeScan in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		642C14992C846B8B00826219 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				642C149A2C846B8B00826219 /* WeScan-1.8.1 */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		644EDFD72C764F4600DF0938 = {
 			isa = PBXGroup;
 			children = (
+				642C14992C846B8B00826219 /* Packages */,
 				644EDFE22C764F4600DF0938 /* Scanner */,
 				644EDFE12C764F4600DF0938 /* Products */,
+				64B905802C846C160062AA01 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +80,13 @@
 			path = Scanner;
 			sourceTree = "<group>";
 		};
+		64B905802C846C160062AA01 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,7 +104,7 @@
 			);
 			name = Scanner;
 			packageProductDependencies = (
-				6452FBD22C77BC2F001475F4 /* WeScan */,
+				64B905812C846C160062AA01 /* WeScan */,
 			);
 			productName = Scanner;
 			productReference = 644EDFE02C764F4600DF0938 /* Scanner.app */;
@@ -117,7 +135,6 @@
 			);
 			mainGroup = 644EDFD72C764F4600DF0938;
 			packageReferences = (
-				6452FBD12C77BC2F001475F4 /* XCRemoteSwiftPackageReference "WeScan" */,
 			);
 			productRefGroup = 644EDFE12C764F4600DF0938 /* Products */;
 			projectDirPath = "";
@@ -373,21 +390,9 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		6452FBD12C77BC2F001475F4 /* XCRemoteSwiftPackageReference "WeScan" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/WeTransfer/WeScan";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		6452FBD22C77BC2F001475F4 /* WeScan */ = {
+		64B905812C846C160062AA01 /* WeScan */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6452FBD12C77BC2F001475F4 /* XCRemoteSwiftPackageReference "WeScan" */;
 			productName = WeScan;
 		};
 /* End XCSwiftPackageProductDependency section */
