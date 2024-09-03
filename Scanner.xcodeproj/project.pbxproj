@@ -13,6 +13,8 @@
 		644EDFEB2C764F4600DF0938 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644EDFE92C764F4600DF0938 /* Main.storyboard */; };
 		644EDFED2C764F4900DF0938 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 644EDFEC2C764F4900DF0938 /* Assets.xcassets */; };
 		644EDFF02C764F4900DF0938 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644EDFEE2C764F4900DF0938 /* LaunchScreen.storyboard */; };
+		649E03FF2C8751AB008C7BFF /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649E03FD2C8751AB008C7BFF /* PageViewController.swift */; };
+		649E04002C8751AB008C7BFF /* PageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 649E03FE2C8751AB008C7BFF /* PageViewController.xib */; };
 		64B905822C846C160062AA01 /* WeScan in Frameworks */ = {isa = PBXBuildFile; productRef = 64B905812C846C160062AA01 /* WeScan */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +28,8 @@
 		644EDFEC2C764F4900DF0938 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		644EDFEF2C764F4900DF0938 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		644EDFF12C764F4900DF0938 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		649E03FD2C8751AB008C7BFF /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		649E03FE2C8751AB008C7BFF /* PageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,8 @@
 				644EDFE32C764F4600DF0938 /* AppDelegate.swift */,
 				644EDFE52C764F4600DF0938 /* SceneDelegate.swift */,
 				644EDFE72C764F4600DF0938 /* ViewController.swift */,
+				649E03FD2C8751AB008C7BFF /* PageViewController.swift */,
+				649E03FE2C8751AB008C7BFF /* PageViewController.xib */,
 				644EDFE92C764F4600DF0938 /* Main.storyboard */,
 				644EDFEC2C764F4900DF0938 /* Assets.xcassets */,
 				644EDFEE2C764F4900DF0938 /* LaunchScreen.storyboard */,
@@ -153,6 +159,7 @@
 				644EDFF02C764F4900DF0938 /* LaunchScreen.storyboard in Resources */,
 				644EDFED2C764F4900DF0938 /* Assets.xcassets in Resources */,
 				644EDFEB2C764F4600DF0938 /* Main.storyboard in Resources */,
+				649E04002C8751AB008C7BFF /* PageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +173,7 @@
 				644EDFE82C764F4600DF0938 /* ViewController.swift in Sources */,
 				644EDFE42C764F4600DF0938 /* AppDelegate.swift in Sources */,
 				644EDFE62C764F4600DF0938 /* SceneDelegate.swift in Sources */,
+				649E03FF2C8751AB008C7BFF /* PageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

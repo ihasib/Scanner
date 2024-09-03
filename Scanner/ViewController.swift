@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tapScanButton: UIButton!
     @IBOutlet weak var tapToScanLabel: UILabel!
     @IBOutlet weak var clickThePlusLabel: UILabel!
+    @IBOutlet weak var photosView: UIView!
     @IBOutlet weak var cameraView: UIView!
 
     @IBAction func cancelButtonTapped(_ sender: Any) {
@@ -36,6 +37,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         let gesture = UITapGestureRecognizer(target: self, action: #selector(handleCameraTap))
         cameraView.addGestureRecognizer(gesture)
+        
+        let gesture2 = UITapGestureRecognizer(target: self, action: #selector(handlePhotosTap))
+        photosView.addGestureRecognizer(gesture2)
     }
 
     @objc func handleCameraTap() {
@@ -43,6 +47,12 @@ class ViewController: UIViewController {
         let scannerViewController = ImageScannerController(delegate: self)
         scannerViewController.modalPresentationStyle = .fullScreen
         present(scannerViewController, animated: true)
+    }
+    
+    @objc func handlePhotosTap() {
+        print(#function)
+        let pageVc = PageViewController()
+        present(pageVc, animated: true)
     }
 
     @IBAction func scanButtonTapped(_ sender: Any) {
