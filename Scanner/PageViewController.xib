@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PageViewController" customModule="Scanner" customModuleProvider="target">
             <connections>
+                <outlet property="scrollView" destination="hkv-tf-NH4" id="paU-xl-rt3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,40 +20,61 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hkv-tf-NH4">
-                    <rect key="frame" x="0.0" y="214.5" width="414" height="467"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uzw-x2-9ya" userLabel="SuperViewScrl">
+                    <rect key="frame" x="0.0" y="134.5" width="414" height="627"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="04j-0x-6u9" userLabel="View1">
-                            <rect key="frame" x="41.5" y="117" width="331" height="233.5"/>
-                            <color key="backgroundColor" systemColor="systemGreenColor"/>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kbX-Zy-ZzV" userLabel="View2">
-                            <rect key="frame" x="412.5" y="117" width="331.5" height="233.5"/>
-                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                        </view>
+                        <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hkv-tf-NH4">
+                            <rect key="frame" x="107.5" y="48.5" width="199" height="530"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="04j-0x-6u9" userLabel="View1">
+                                    <rect key="frame" x="0.0" y="0.0" width="199" height="530"/>
+                                    <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kbX-Zy-ZzV" userLabel="View2">
+                                    <rect key="frame" x="219" y="0.0" width="199" height="530"/>
+                                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="04j-0x-6u9" secondAttribute="bottom" id="45y-5f-PPT"/>
+                                <constraint firstAttribute="trailing" secondItem="kbX-Zy-ZzV" secondAttribute="trailing" id="Agl-gB-l16"/>
+                                <constraint firstItem="kbX-Zy-ZzV" firstAttribute="height" secondItem="04j-0x-6u9" secondAttribute="height" id="ExD-hk-ou4"/>
+                                <constraint firstItem="04j-0x-6u9" firstAttribute="leading" secondItem="hkv-tf-NH4" secondAttribute="leading" id="GJx-xv-vBC"/>
+                                <constraint firstItem="04j-0x-6u9" firstAttribute="height" secondItem="hkv-tf-NH4" secondAttribute="height" id="J6J-aY-b2H"/>
+                                <constraint firstItem="kbX-Zy-ZzV" firstAttribute="width" secondItem="04j-0x-6u9" secondAttribute="width" id="P0o-tN-d9R"/>
+                                <constraint firstItem="kbX-Zy-ZzV" firstAttribute="leading" secondItem="04j-0x-6u9" secondAttribute="trailing" constant="20" id="Sod-Pj-cCl"/>
+                                <constraint firstItem="04j-0x-6u9" firstAttribute="width" secondItem="hkv-tf-NH4" secondAttribute="width" id="VF5-GZ-HIu"/>
+                                <constraint firstItem="04j-0x-6u9" firstAttribute="top" secondItem="hkv-tf-NH4" secondAttribute="top" id="W2u-9S-Fo8"/>
+                                <constraint firstItem="kbX-Zy-ZzV" firstAttribute="centerY" secondItem="hkv-tf-NH4" secondAttribute="centerY" id="Zo6-W7-1dd"/>
+                            </constraints>
+                        </scrollView>
+                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" defersCurrentPageDisplay="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="7ND-nV-2n6">
+                            <rect key="frame" x="129" y="598" width="156" height="26"/>
+                            <connections>
+                                <action selector="pageControlValueChanged:" destination="-1" eventType="valueChanged" id="mZz-Pc-mZu"/>
+                            </connections>
+                        </pageControl>
                     </subviews>
+                    <color key="backgroundColor" systemColor="systemGray2Color"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="04j-0x-6u9" secondAttribute="bottom" constant="169.5" id="45y-5f-PPT"/>
-                        <constraint firstAttribute="trailing" secondItem="kbX-Zy-ZzV" secondAttribute="trailing" constant="70" id="Agl-gB-l16"/>
-                        <constraint firstItem="kbX-Zy-ZzV" firstAttribute="height" secondItem="04j-0x-6u9" secondAttribute="height" id="ExD-hk-ou4"/>
-                        <constraint firstItem="04j-0x-6u9" firstAttribute="leading" secondItem="hkv-tf-NH4" secondAttribute="centerX" multiplier="10:50" id="GJx-xv-vBC"/>
-                        <constraint firstItem="04j-0x-6u9" firstAttribute="height" secondItem="hkv-tf-NH4" secondAttribute="height" multiplier="50:100" id="J6J-aY-b2H"/>
-                        <constraint firstItem="kbX-Zy-ZzV" firstAttribute="width" secondItem="04j-0x-6u9" secondAttribute="width" id="P0o-tN-d9R"/>
-                        <constraint firstItem="kbX-Zy-ZzV" firstAttribute="leading" secondItem="04j-0x-6u9" secondAttribute="trailing" constant="40" id="Sod-Pj-cCl"/>
-                        <constraint firstItem="04j-0x-6u9" firstAttribute="width" secondItem="hkv-tf-NH4" secondAttribute="width" multiplier="8:10" id="VF5-GZ-HIu"/>
-                        <constraint firstItem="04j-0x-6u9" firstAttribute="top" secondItem="hkv-tf-NH4" secondAttribute="centerY" multiplier="25:50" id="W2u-9S-Fo8"/>
-                        <constraint firstItem="kbX-Zy-ZzV" firstAttribute="centerY" secondItem="hkv-tf-NH4" secondAttribute="centerY" id="Zo6-W7-1dd"/>
-                        <constraint firstItem="04j-0x-6u9" firstAttribute="centerY" secondItem="hkv-tf-NH4" secondAttribute="centerY" id="bzi-n1-TWP"/>
+                        <constraint firstItem="hkv-tf-NH4" firstAttribute="centerX" secondItem="uzw-x2-9ya" secondAttribute="centerX" id="HBn-oM-dxj"/>
+                        <constraint firstItem="7ND-nV-2n6" firstAttribute="width" secondItem="uzw-x2-9ya" secondAttribute="width" multiplier="0.376812" id="Npd-QI-4Et"/>
+                        <constraint firstAttribute="bottom" secondItem="7ND-nV-2n6" secondAttribute="bottom" constant="3" id="WsJ-7f-CE7"/>
+                        <constraint firstItem="hkv-tf-NH4" firstAttribute="height" secondItem="uzw-x2-9ya" secondAttribute="height" multiplier="0.521205" constant="202.74906499999997" id="Xbp-b8-ngH"/>
+                        <constraint firstItem="7ND-nV-2n6" firstAttribute="centerX" secondItem="uzw-x2-9ya" secondAttribute="centerX" id="ihM-F9-MYn"/>
+                        <constraint firstItem="7ND-nV-2n6" firstAttribute="height" secondItem="uzw-x2-9ya" secondAttribute="height" multiplier="0.0414673" id="mPa-JH-My5"/>
+                        <constraint firstItem="hkv-tf-NH4" firstAttribute="width" secondItem="uzw-x2-9ya" secondAttribute="width" multiplier="30:100" constant="74.800000000000011" id="nFS-ee-GHp"/>
+                        <constraint firstItem="hkv-tf-NH4" firstAttribute="centerY" secondItem="uzw-x2-9ya" secondAttribute="centerY" id="pKa-59-kch"/>
                     </constraints>
-                </scrollView>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="hkv-tf-NH4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Hpm-Jx-nIO"/>
-                <constraint firstItem="hkv-tf-NH4" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.521205" id="Ic8-UG-JR6"/>
-                <constraint firstItem="hkv-tf-NH4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="agt-bT-EzE"/>
-                <constraint firstItem="hkv-tf-NH4" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="ltq-I1-JFj"/>
+                <constraint firstItem="uzw-x2-9ya" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="828-kY-gka"/>
+                <constraint firstItem="uzw-x2-9ya" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SQe-X6-Qov"/>
+                <constraint firstItem="uzw-x2-9ya" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="TOW-Cf-oXn"/>
+                <constraint firstItem="uzw-x2-9ya" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.7" id="VKA-nv-Ood"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="83.705357142857139"/>
         </view>
@@ -60,6 +82,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
