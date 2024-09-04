@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tapScanButton: UIButton!
     @IBOutlet weak var tapToScanLabel: UILabel!
     @IBOutlet weak var clickThePlusLabel: UILabel!
+    @IBOutlet weak var filesView: UIView!
     @IBOutlet weak var photosView: UIView!
     @IBOutlet weak var cameraView: UIView!
 
@@ -40,6 +41,15 @@ class ViewController: UIViewController {
         
         let gesture2 = UITapGestureRecognizer(target: self, action: #selector(handlePhotosTap))
         photosView.addGestureRecognizer(gesture2)
+        
+        let gesture3 = UITapGestureRecognizer(target: self, action: #selector(handleFilesTap))
+        filesView.addGestureRecognizer(gesture3)
+    }
+    
+    @objc func handleFilesTap() {
+        print(#function)
+        let vc = TablePageViewController()
+        present(vc, animated: true)
     }
 
     @objc func handleCameraTap() {

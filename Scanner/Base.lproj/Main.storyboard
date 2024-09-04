@@ -295,6 +295,7 @@
                     <connections>
                         <outlet property="cameraView" destination="KZy-yc-rhd" id="G3s-fj-KmA"/>
                         <outlet property="clickThePlusLabel" destination="eqK-gg-g6j" id="qW8-oO-Hjg"/>
+                        <outlet property="filesView" destination="zLM-5K-ilZ" id="Mfn-Bf-Mba"/>
                         <outlet property="photosView" destination="adl-zR-mds" id="q5u-u5-Xhx"/>
                         <outlet property="slideView" destination="6mC-g8-10b" id="RyI-pg-DQo"/>
                         <outlet property="slideViewleadAnchor" destination="Pai-rL-3uk" id="LJu-gu-T5O"/>
