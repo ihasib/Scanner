@@ -36,6 +36,8 @@ extension TablePageViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         print(#function)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SingleViewCollectionViewCellId", for: indexPath) as! SingleViewCollectionViewCell
+        let url = Bundle.main.url(forResource: "pic", withExtension: "png")
+        cell.imageView.image = UIImage(contentsOfFile: url!.path)
         return cell
     }
     
