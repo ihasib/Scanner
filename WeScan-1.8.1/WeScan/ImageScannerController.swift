@@ -61,7 +61,7 @@ public final class ImageScannerController: UINavigationController {
     }
     
     public required init(image: UIImage? = nil, delegate: ImageScannerControllerDelegate? = nil) {
-        print(#function)
+        print("Image Scanner Controller: \(#function)")
         super.init(rootViewController: ScannerViewController())
         
         self.imageScannerDelegate = delegate
@@ -86,7 +86,7 @@ public final class ImageScannerController: UINavigationController {
     }
 
     override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        print(#function)
+        print("Image Scanner Controller: \(#function)")
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -95,7 +95,7 @@ public final class ImageScannerController: UINavigationController {
     }
     
     private func detect(image: UIImage, completion: @escaping (Quadrilateral?) -> Void) {
-        print(#function)
+        print("Image Scanner Controller: \(#function)")
         // Whether or not we detect a quad, present the edit view controller after attempting to detect a quad.
         // *** Vision *requires* a completion block to detect rectangles, but it's instant.
         // *** When using Vision, we'll present the normal edit view controller first, then present the updated edit view controller later.
@@ -118,7 +118,7 @@ public final class ImageScannerController: UINavigationController {
     }
     
     public func useImage(image: UIImage) {
-        print(#function)
+        print("Image Scanner Controller: \(#function)")
         guard topViewController is ScannerViewController else { return }
         
         detect(image: image) { [weak self] detectedQuad in
@@ -129,12 +129,12 @@ public final class ImageScannerController: UINavigationController {
     }
     
     public func resetScanner() {
-        print(#function)
+        print("Image Scanner Controller: \(#function)")
         setViewControllers([ScannerViewController()], animated: true)
     }
     
     private func setupConstraints() {
-        print(#function)
+        print("Image Scanner Controller: \(#function)")
         let blackFlashViewConstraints = [
             blackFlashView.topAnchor.constraint(equalTo: view.topAnchor),
             blackFlashView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -146,7 +146,7 @@ public final class ImageScannerController: UINavigationController {
     }
     
     internal func flashToBlack() {
-        print(#function)
+        print("Image Scanner Controller: \(#function)")
         view.bringSubviewToFront(blackFlashView)
         blackFlashView.isHidden = false
         let flashDuration = DispatchTime.now() + 0.05
@@ -165,7 +165,7 @@ public struct ImageScannerScan {
     public var image: UIImage
     
     public func generatePDFData(completion: @escaping (Result<Data, ImageScannerError>) -> Void) {
-        print(#function)
+        print("Image Scanner Controller: \(#function)")
         DispatchQueue.global(qos: .userInteractive).async {
             if let pdfData = self.image.pdfData() {
                 completion(.success(pdfData))
@@ -177,7 +177,7 @@ public struct ImageScannerScan {
     }
     
     mutating func rotate(by rotationAngle: Measurement<UnitAngle>) {
-        print(#function)
+        print("Image Scanner Controller: \(#function)")
         guard rotationAngle.value != 0, rotationAngle.value != 360 else { return }
         image = image.rotated(by: rotationAngle) ?? image
     }

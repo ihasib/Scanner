@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6439CF2E2C8F180700A158C0 /* pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 6439CF2D2C8F180700A158C0 /* pic.png */; };
 		643FE8922C88A3EC0060AD51 /* TablePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643FE8902C88A3EC0060AD51 /* TablePageViewController.swift */; };
 		643FE8932C88A3EC0060AD51 /* TablePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643FE8912C88A3EC0060AD51 /* TablePageViewController.xib */; };
 		644EDFE42C764F4600DF0938 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644EDFE32C764F4600DF0938 /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		642C149A2C846B8B00826219 /* WeScan-1.8.1 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "WeScan-1.8.1"; sourceTree = "<group>"; };
+		6439CF2D2C8F180700A158C0 /* pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pic.png; path = ../../../pic.png; sourceTree = "<group>"; };
 		643FE8902C88A3EC0060AD51 /* TablePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TablePageViewController.swift; sourceTree = "<group>"; };
 		643FE8912C88A3EC0060AD51 /* TablePageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TablePageViewController.xib; sourceTree = "<group>"; };
 		644EDFE02C764F4600DF0938 /* Scanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +83,7 @@
 		644EDFE22C764F4600DF0938 /* Scanner */ = {
 			isa = PBXGroup;
 			children = (
+				6439CF2D2C8F180700A158C0 /* pic.png */,
 				644EDFE32C764F4600DF0938 /* AppDelegate.swift */,
 				644EDFE52C764F4600DF0938 /* SceneDelegate.swift */,
 				644EDFE72C764F4600DF0938 /* ViewController.swift */,
@@ -172,6 +175,7 @@
 				643FE8932C88A3EC0060AD51 /* TablePageViewController.xib in Resources */,
 				644EDFF02C764F4900DF0938 /* LaunchScreen.storyboard in Resources */,
 				644EDFED2C764F4900DF0938 /* Assets.xcassets in Resources */,
+				6439CF2E2C8F180700A158C0 /* pic.png in Resources */,
 				644EDFEB2C764F4600DF0938 /* Main.storyboard in Resources */,
 				649E04002C8751AB008C7BFF /* PageViewController.xib in Resources */,
 			);

@@ -158,6 +158,7 @@ final class ReviewViewController: UIViewController {
         reloadImage()
     }
     
+    //hasib done button tapped
     @objc private func finishScan() {
         guard let imageScannerController = navigationController as? ImageScannerController else { return }
         
