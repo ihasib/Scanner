@@ -11,6 +11,7 @@ import AVFoundation
 
 /// A set of methods that your delegate object must implement to interact with the image scanner interface.
 public protocol ImageScannerControllerDelegate: NSObjectProtocol {
+    func imageScannerController(_ scanner: ImageScannerController, didFinishBatchScanningWithResults results: [ImageScannerResults])
     
     /// Tells the delegate that the user scanned a document.
     ///
@@ -61,6 +62,8 @@ public final class ImageScannerController: UINavigationController {
     }
     
     public required init(image: UIImage? = nil, delegate: ImageScannerControllerDelegate? = nil) {
+        ScannerViewController.isBatchEnabled = false
+        ScannerViewController.batchResult = [ImageScannerResults]()
         super.init(rootViewController: ScannerViewController())
         
         self.imageScannerDelegate = delegate

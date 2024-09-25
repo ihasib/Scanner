@@ -60,6 +60,19 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: ImageScannerControllerDelegate {
+    func imageScannerController(_ scanner: ImageScannerController, didFinishBatchScanningWithResults results: [ImageScannerResults]) {
+        print("\(#function) called")
+        print("count = \(results.count)")
+        for image in results {
+            guard let scanImage = image.enhancedScan else {
+                return
+            }
+            let image =  scanImage.image
+            scanner.dismiss(animated: true)
+            UIImageWriteToSavedPhotosAlbum(image, self, #selector(didPhotoSave), nil)
+        }
+    }
+    
     func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
         print(#function)
         guard let scanImage = results.enhancedScan else {

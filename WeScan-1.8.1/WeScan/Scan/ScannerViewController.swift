@@ -27,10 +27,24 @@ public final class ScannerViewController: UIViewController {
     /// The original bar style that was set by the host app
     private var originalBarStyle: UIBarStyle?
     
+    static var isBatchEnabled = false
+    static var batchResult = [ImageScannerResults]()
+    
     private lazy var shutterButton: ShutterButton = {
         let button = ShutterButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(captureImage(_:)), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var batchScanButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Batch", for: .normal)
+        let white = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        let red = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
+        button.setTitleColor((Self.isBatchEnabled ? red : white), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(batchScanTapped), for: .touchUpInside)
         return button
     }()
     
@@ -125,6 +139,7 @@ public final class ScannerViewController: UIViewController {
         view.addSubview(quadView)
         view.addSubview(cancelButton)
         view.addSubview(shutterButton)
+        view.addSubview(batchScanButton)
         view.addSubview(activityIndicator)
     }
     
@@ -143,6 +158,7 @@ public final class ScannerViewController: UIViewController {
         var quadViewConstraints = [NSLayoutConstraint]()
         var cancelButtonConstraints = [NSLayoutConstraint]()
         var shutterButtonConstraints = [NSLayoutConstraint]()
+        var batchScanButtonConstraints = [NSLayoutConstraint]()
         var activityIndicatorConstraints = [NSLayoutConstraint]()
         
         quadViewConstraints = [
@@ -156,6 +172,12 @@ public final class ScannerViewController: UIViewController {
             shutterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             shutterButton.widthAnchor.constraint(equalToConstant: 65.0),
             shutterButton.heightAnchor.constraint(equalToConstant: 65.0)
+        ]
+        
+        batchScanButtonConstraints = [
+            batchScanButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100.0),
+            batchScanButton.widthAnchor.constraint(equalToConstant: 65.0),
+            batchScanButton.heightAnchor.constraint(equalToConstant: 65.0)
         ]
         
         activityIndicatorConstraints = [
@@ -181,7 +203,10 @@ public final class ScannerViewController: UIViewController {
             shutterButtonConstraints.append(shutterButtonBottomConstraint)
         }
         
-        NSLayoutConstraint.activate(quadViewConstraints + cancelButtonConstraints + shutterButtonConstraints + activityIndicatorConstraints)
+        let batchScanBottomConstraint = batchScanButton.bottomAnchor.constraint(equalTo: shutterButton.bottomAnchor)
+        batchScanButtonConstraints.append(batchScanBottomConstraint)
+        
+        NSLayoutConstraint.activate(quadViewConstraints + cancelButtonConstraints + shutterButtonConstraints + batchScanButtonConstraints + activityIndicatorConstraints)
     }
     
     // MARK: - Tap to Focus
@@ -266,7 +291,18 @@ public final class ScannerViewController: UIViewController {
     
     @objc private func cancelImageScannerController() {
         guard let imageScannerController = navigationController as? ImageScannerController else { return }
+        if ScannerViewController.isBatchEnabled {
+            imageScannerController.imageScannerDelegate?.imageScannerController(imageScannerController, didFinishBatchScanningWithResults: ScannerViewController.batchResult)
+        }
         imageScannerController.imageScannerDelegate?.imageScannerControllerDidCancel(imageScannerController)
+    }
+    
+    @objc private func batchScanTapped() {
+        print("\(#function) called")
+        let white = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        let red = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
+        Self.isBatchEnabled.toggle()
+        batchScanButton.setTitleColor((Self.isBatchEnabled ? red : white), for: .normal)
     }
     
 }

@@ -165,6 +165,12 @@ final class ReviewViewController: UIViewController {
         newResults.croppedScan.rotate(by: rotationAngle)
         newResults.enhancedScan?.rotate(by: rotationAngle)
         newResults.doesUserPreferEnhancedScan = isCurrentlyDisplayingEnhancedImage
+        
+        if ScannerViewController.isBatchEnabled {
+            ScannerViewController.batchResult.append(newResults)
+            imageScannerController.setViewControllers([ScannerViewController()], animated: true)
+            return
+        }
         imageScannerController.imageScannerDelegate?.imageScannerController(imageScannerController, didFinishScanningWithResults: newResults)
     }
 
