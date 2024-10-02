@@ -13,11 +13,10 @@
 		644EDFEB2C764F4600DF0938 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644EDFE92C764F4600DF0938 /* Main.storyboard */; };
 		644EDFED2C764F4900DF0938 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 644EDFEC2C764F4900DF0938 /* Assets.xcassets */; };
 		644EDFF02C764F4900DF0938 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644EDFEE2C764F4900DF0938 /* LaunchScreen.storyboard */; };
-		64B905822C846C160062AA01 /* WeScan in Frameworks */ = {isa = PBXBuildFile; productRef = 64B905812C846C160062AA01 /* WeScan */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		642C149A2C846B8B00826219 /* WeScan-1.8.1 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "WeScan-1.8.1"; sourceTree = "<group>"; };
+		5BD131462CADA65E00017943 /* WeScan-3.0.0 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "WeScan-3.0.0"; sourceTree = "<group>"; };
 		644EDFE02C764F4600DF0938 /* Scanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		644EDFE32C764F4600DF0938 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		644EDFE52C764F4600DF0938 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,7 +32,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64B905822C846C160062AA01 /* WeScan in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,7 +41,7 @@
 		642C14992C846B8B00826219 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				642C149A2C846B8B00826219 /* WeScan-1.8.1 */,
+				5BD131462CADA65E00017943 /* WeScan-3.0.0 */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -104,7 +102,6 @@
 			);
 			name = Scanner;
 			packageProductDependencies = (
-				64B905812C846C160062AA01 /* WeScan */,
 			);
 			productName = Scanner;
 			productReference = 644EDFE02C764F4600DF0938 /* Scanner.app */;
@@ -391,13 +388,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		64B905812C846C160062AA01 /* WeScan */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = WeScan;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 644EDFD82C764F4600DF0938 /* Project object */;
 }
