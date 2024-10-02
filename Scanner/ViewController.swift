@@ -59,7 +59,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: ImageScannerControllerDelegate {
+extension ViewController: ImageScannerControllerDelegate {    
     func imageScannerController(_ scanner: ImageScannerController, didFinishBatchScanningWithResults results: [ImageScannerResults]) {
         print("\(#function) called")
         print("count = \(results.count)")

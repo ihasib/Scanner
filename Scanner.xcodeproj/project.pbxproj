@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5BD131482CADA92600017943 /* WeScan in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD131472CADA92600017943 /* WeScan */; };
 		644EDFE42C764F4600DF0938 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644EDFE32C764F4600DF0938 /* AppDelegate.swift */; };
 		644EDFE62C764F4600DF0938 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644EDFE52C764F4600DF0938 /* SceneDelegate.swift */; };
 		644EDFE82C764F4600DF0938 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644EDFE72C764F4600DF0938 /* ViewController.swift */; };
@@ -32,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BD131482CADA92600017943 /* WeScan in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +104,7 @@
 			);
 			name = Scanner;
 			packageProductDependencies = (
+				5BD131472CADA92600017943 /* WeScan */,
 			);
 			productName = Scanner;
 			productReference = 644EDFE02C764F4600DF0938 /* Scanner.app */;
@@ -388,6 +391,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5BD131472CADA92600017943 /* WeScan */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WeScan;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 644EDFD82C764F4600DF0938 /* Project object */;
 }
