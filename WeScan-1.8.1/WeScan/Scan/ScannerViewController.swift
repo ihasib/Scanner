@@ -48,12 +48,40 @@ public final class ScannerViewController: UIViewController {
         return button
     }()
 
-    private lazy var batchShowButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Bshw", for: .normal)
-        let white = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+    private lazy var batchShowButton: UIView = {
+        let button = UIView()
+        button.backgroundColor = .clear
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(batchShowTapped), for: .touchUpInside)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(batchShowTapped))
+        button.addGestureRecognizer(gesture)
+        
+        let imageView = UIImageView(image: UIImage(named: "pic"))
+        imageView.backgroundColor = .cyan
+        button.addSubview(imageView)
+
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.bottomAnchor.constraint(equalTo: button.bottomAnchor).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: button.leadingAnchor).isActive = true
+        imageView.heightAnchor.constraint(equalTo: button.heightAnchor, multiplier: 0.8).isActive = true
+        imageView.widthAnchor.constraint(equalTo: button.widthAnchor, multiplier: 0.8).isActive = true
+        
+        let label = UILabel()
+        label.text = "5"
+        label.textColor = .white
+        label.textAlignment = .center
+        
+        label.backgroundColor = .red
+        button.addSubview(label)
+
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.topAnchor.constraint(equalTo: button.topAnchor).isActive = true
+        label.trailingAnchor.constraint(equalTo: button.trailingAnchor).isActive = true
+        label.heightAnchor.constraint(equalTo: button.heightAnchor, multiplier: 0.2).isActive = true
+//        label.widthAnchor.constraint(equalTo: label.heightAnchor).isActive = true
+        
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius =  5
+        
         return button
     }()
 
@@ -142,7 +170,7 @@ public final class ScannerViewController: UIViewController {
 
     private func setupViews() {
         view.backgroundColor = .darkGray
-        view.layer.addSublayer(videoPreviewLayer)
+//        view.layer.addSublayer(videoPreviewLayer)
         quadView.translatesAutoresizingMaskIntoConstraints = false
         quadView.editable = false
         view.addSubview(quadView)
@@ -193,8 +221,8 @@ public final class ScannerViewController: UIViewController {
 
         batchShowButtonConstraints = [
             batchShowButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-//            batchShowButton.widthAnchor.constraint(equalToConstant: 65.0),
-//            batchScanButton.heightAnchor.constraint(equalToConstant: 65.0)
+            batchShowButton.widthAnchor.constraint(equalToConstant: 65.0),
+            batchShowButton.heightAnchor.constraint(equalToConstant: 65.0)
         ]
 
         activityIndicatorConstraints = [
