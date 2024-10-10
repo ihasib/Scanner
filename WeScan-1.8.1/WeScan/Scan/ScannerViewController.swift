@@ -439,14 +439,22 @@ public final class ScannerViewController: UIViewController {
         blurEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         blurEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
-        
-        UIView.animate(withDuration: 1.5, delay: 0, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: 0.3) {
             blurEffectView.alpha = 1.0
-        }) { _ in
-            UIView.animate(withDuration: 0.5) {
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            UIView.animate(withDuration: 0.2) {
                 blurEffectView.alpha = 0.0
             }
         }
+//        UIView.animate(withDuration: 2.5, delay: 0, options: [.curveEaseOut], animations: {
+//            blurEffectView.alpha = 1.0
+//        }) { _ in
+//            UIView.animate(withDuration: 1.5) {
+//                blurEffectView.alpha = 0.0
+//            }
+//        }
+//
 //        blurEffectView.removeFromSuperview()
 //        sleep(1)
 //        UIView.animate(withDuration: 0.5) {
