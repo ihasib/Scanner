@@ -425,6 +425,34 @@ public final class ScannerViewController: UIViewController {
     
     @objc private func segmentValueChanged() {
         print("\(#function) called")
+        
+        let blurEffect = UIBlurEffect(style: .light) // Choose the style you prefer
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = videoPreviewLayer.bounds
+        
+        self.view.addSubview(blurEffectView)
+        
+        self.view.addSubview(blurEffectView)
+        blurEffectView.translatesAutoresizingMaskIntoConstraints = false
+        blurEffectView.bottomAnchor.constraint(equalTo: lowerView.topAnchor).isActive = true
+        blurEffectView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        blurEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        blurEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
+        
+        UIView.animate(withDuration: 1.5, delay: 0, options: [.curveEaseOut], animations: {
+            blurEffectView.alpha = 1.0
+        }) { _ in
+            UIView.animate(withDuration: 0.5) {
+                blurEffectView.alpha = 0.0
+            }
+        }
+//        blurEffectView.removeFromSuperview()
+//        sleep(1)
+//        UIView.animate(withDuration: 0.5) {
+//            self.videoPreviewLayer.opacity = 1
+//        }
+//        view.layer.addSublayer(videoPreviewLayer)
         ScannerViewController.isBatchEnabled.toggle()
         
         if segmetedControl.selectedSegmentIndex == 1 {
