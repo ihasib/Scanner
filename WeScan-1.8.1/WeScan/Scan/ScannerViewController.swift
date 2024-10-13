@@ -220,7 +220,7 @@ public final class ScannerViewController: UIViewController {
         quadView.editable = false
         view.addSubview(quadView)
         view.addSubview(lowerView)
-//        lowerView.addSubview(cancelButton)
+        lowerView.addSubview(cancelButton)
         lowerView.addSubview(saveButton)
         lowerView.addSubview(shutterButton)
 //        view.addSubview(batchScanButton)
@@ -294,6 +294,11 @@ public final class ScannerViewController: UIViewController {
             segmetedControl.centerXAnchor.constraint(equalTo: lowerView.centerXAnchor),
             segmetedControl.heightAnchor.constraint(equalTo: lowerView.heightAnchor, multiplier: 0.25)
         ]
+        
+        cancelButtonConstraints = [
+            cancelButton.topAnchor.constraint(equalTo: lowerView.topAnchor),
+            cancelButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor)
+        ]
 
         saveButtonConstraints = [
             saveButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 5),
@@ -301,19 +306,9 @@ public final class ScannerViewController: UIViewController {
         ]
         
         if #available(iOS 11.0, *) {
-            cancelButtonConstraints = [
-                cancelButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 24.0),
-                view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: cancelButton.bottomAnchor, constant: (65.0 / 2) - 10.0)
-            ]
-
             let shutterButtonBottomConstraint = view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: shutterButton.bottomAnchor, constant: 8.0)
             shutterButtonConstraints.append(shutterButtonBottomConstraint)
         } else {
-            cancelButtonConstraints = [
-                cancelButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24.0),
-                view.bottomAnchor.constraint(equalTo: cancelButton.bottomAnchor, constant: (65.0 / 2) - 10.0)
-            ]
-
             let shutterButtonBottomConstraint = view.bottomAnchor.constraint(equalTo: shutterButton.bottomAnchor, constant: 8.0)
             shutterButtonConstraints.append(shutterButtonBottomConstraint)
         }
@@ -322,7 +317,7 @@ public final class ScannerViewController: UIViewController {
         batchScanButtonConstraints.append(batchScanBottomConstraint)
 
 //        NSLayoutConstraint.activate(quadViewConstraints + cancelButtonConstraints + shutterButtonConstraints + batchScanButtonConstraints + batchShowButtonConstraints + activityIndicatorConstraints )
-        NSLayoutConstraint.activate(lowerViewConstraints + shutterButtonConstraints + batchShowButtonConstraints + segmentedControlConstraints + saveButtonConstraints)
+        NSLayoutConstraint.activate(lowerViewConstraints + shutterButtonConstraints + batchShowButtonConstraints + segmentedControlConstraints + cancelButtonConstraints + saveButtonConstraints)
     }
 
     // MARK: - Tap to Focus
@@ -407,7 +402,31 @@ public final class ScannerViewController: UIViewController {
     }
 
     @objc private func cancelImageScannerController() {
-        save()
+        
+        if ScannerViewController.isBatchEnabled {
+            if ScannerViewController.batchResult.count > 0 {
+                showSwitchPopup() {
+                    ScannerViewController.isBatchEnabled = false
+                    self.resetBatchStates()
+                    self.dismissVC()
+                }
+                return
+            }
+        }
+        dismissVC()
+    }
+    
+    private func dismissVC() {
+        guard let imageScannerController = navigationController as? ImageScannerController else { return }
+        resetBatchStates()
+        imageScannerController.imageScannerDelegate?.imageScannerControllerDidCancel(imageScannerController)
+    }
+    
+    private func resetBatchStates() {
+        ScannerViewController.isBatchEnabled = false
+        ScannerViewController.batchResult = []
+        saveButton.isHidden = true
+        batchShowButton.isHidden = true
     }
     
     @objc private func saveButtonTapped() {
@@ -416,11 +435,7 @@ public final class ScannerViewController: UIViewController {
     
     private func save() {
         guard let imageScannerController = navigationController as? ImageScannerController else { return }
-        if ScannerViewController.isBatchEnabled {
-            ScannerViewController.isBatchEnabled.toggle()
-            imageScannerController.imageScannerDelegate?.imageScannerController(imageScannerController, didFinishBatchScanningWithResults: ScannerViewController.batchResult)
-        }
-        imageScannerController.imageScannerDelegate?.imageScannerControllerDidCancel(imageScannerController)
+        imageScannerController.imageScannerDelegate?.imageScannerController(imageScannerController, didFinishBatchScanningWithResults: ScannerViewController.batchResult)
     }
     
     @objc private func segmentValueChanged() {
@@ -447,40 +462,58 @@ public final class ScannerViewController: UIViewController {
                 blurEffectView.alpha = 0.0
             }
         }
-//        UIView.animate(withDuration: 2.5, delay: 0, options: [.curveEaseOut], animations: {
-//            blurEffectView.alpha = 1.0
-//        }) { _ in
-//            UIView.animate(withDuration: 1.5) {
-//                blurEffectView.alpha = 0.0
-//            }
-//        }
-//
-//        blurEffectView.removeFromSuperview()
-//        sleep(1)
-//        UIView.animate(withDuration: 0.5) {
-//            self.videoPreviewLayer.opacity = 1
-//        }
-//        view.layer.addSublayer(videoPreviewLayer)
-        ScannerViewController.isBatchEnabled.toggle()
         
         if segmetedControl.selectedSegmentIndex == 1 {
 //            batchScanTapped()
+            ScannerViewController.isBatchEnabled = true
             if ScannerViewController.batchResult.count > 0 {
                 batchShowButton.isHidden = false
                 saveButton.isHidden = false
                 //            batchShowButton.isHidden = true
             }
         } else {
-            saveButton.isHidden = true
-            batchShowButton.isHidden = true
             if ScannerViewController.batchResult.count > 0 {
-//            popup: would you like to save
-                ScannerViewController.batchResult = []
-//                badgeLabel.text = "0"
-//                batchShowThumb.image = UIImage(systemName: "star.fill")
-//                batchShowButton.isHidden = false
+                showSwitchPopup() {
+                    ScannerViewController.isBatchEnabled = false
+                    self.resetBatchStates()
+                }
             }
         }
+    }
+    
+    private func showSwitchPopup(completion: @escaping () -> () ) {
+        let alert = UIAlertController(title: "Want to dismiss batch scan?", message: "Press YES to dismiss.\nPress NO to continue Batch scan.", preferredStyle: .alert)
+        
+        let alertAction = UIAlertAction(title: "NO", style: .cancel) { _ in
+            //no operation
+            if self.segmetedControl.selectedSegmentIndex == 0 {
+                self.segmetedControl.selectedSegmentIndex = 1
+            }
+        }
+        
+        let alertAction2 = UIAlertAction(title: "YES", style: .default) { _ in
+            completion()
+        }
+        alert.addAction(alertAction)
+        alert.addAction(alertAction2)
+        
+        present(alert, animated: true)
+    }
+    
+    private func showSavePopup() {
+        let alert = UIAlertController(title: "Want to Save?", message: "Press SAVE to preserve scan.\nPress DISCARD to abandon scan.", preferredStyle: .alert)
+        
+        let alertAction = UIAlertAction(title: "SAVE", style: .default) { _ in
+            self.save()
+        }
+        
+        let alertAction2 = UIAlertAction(title: "DISCARD", style: .cancel) { _ in
+            self.dismissVC()
+        }
+        alert.addAction(alertAction)
+        alert.addAction(alertAction2)
+        
+        present(alert, animated: true)
     }
     
     @objc private func batchScanTapped() {

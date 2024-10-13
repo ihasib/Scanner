@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -218,7 +219,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.91370683908462524" green="0.92547738552093506" blue="0.93674576282501221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="SlideVBackColor"/>
                                         <constraints>
                                             <constraint firstItem="zLM-5K-ilZ" firstAttribute="leading" secondItem="M2F-9U-gCu" secondAttribute="leading" id="2Zw-Rr-dT4"/>
                                             <constraint firstItem="adl-zR-mds" firstAttribute="centerX" secondItem="M2F-9U-gCu" secondAttribute="centerX" id="315-od-9KZ"/>
@@ -245,7 +246,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.91370683908462524" green="0.92547738552093506" blue="0.93674576282501221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="SlideVBackColor"/>
                                 <constraints>
                                     <constraint firstItem="M2F-9U-gCu" firstAttribute="centerY" secondItem="6mC-g8-10b" secondAttribute="centerY" multiplier="75:90.5" id="2V4-Jj-N3F"/>
                                     <constraint firstAttribute="bottom" secondItem="E8l-E1-UxO" secondAttribute="bottom" constant="5" id="BJ0-1A-guq"/>
@@ -315,6 +316,9 @@
         <image name="Group 963" width="37" height="21"/>
         <image name="Vector" width="20" height="20"/>
         <image name="Vector-1" width="75" height="60"/>
+        <namedColor name="SlideVBackColor">
+            <color white="0.90260541439056396" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
