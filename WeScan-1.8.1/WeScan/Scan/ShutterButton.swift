@@ -14,8 +14,8 @@ final class ShutterButton: UIControl {
     private let outterRingLayer = CAShapeLayer()
     private let innerCircleLayer = CAShapeLayer()
     
-    private let outterRingRatio: CGFloat = 0.80
-    private let innerRingRatio: CGFloat = 0.75
+    private let outterRingRatio: CGFloat = 0.90
+    private let innerRingRatio: CGFloat = 0.85
     
     private let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
@@ -50,13 +50,13 @@ final class ShutterButton: UIControl {
 
         outterRingLayer.frame = rect
         outterRingLayer.path = pathForOutterRing(inRect: rect).cgPath
-        outterRingLayer.fillColor = UIColor.white.cgColor
+        outterRingLayer.fillColor = UIColor.yellow.cgColor
         outterRingLayer.rasterizationScale = UIScreen.main.scale
         outterRingLayer.shouldRasterize = true
         
         innerCircleLayer.frame = rect
         innerCircleLayer.path = pathForInnerCircle(inRect: rect).cgPath
-        innerCircleLayer.fillColor = UIColor.white.cgColor
+        innerCircleLayer.fillColor = UIColor.violet.cgColor
         innerCircleLayer.rasterizationScale = UIScreen.main.scale
         innerCircleLayer.shouldRasterize = true
     }
@@ -98,4 +98,23 @@ final class ShutterButton: UIControl {
         return path
     }
     
+}
+
+extension UIColor {
+    static let violet = UIColor(hex: "253C5E")
+    static let yellow = UIColor(hex: "DEA850")
+    
+    convenience init(hex: String) {
+        var hexCleaned = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+        hexCleaned = hexCleaned.replacingOccurrences(of: "#", with: "")
+
+        var rgb: UInt64 = 0
+        Scanner(string: hexCleaned).scanHexInt64(&rgb)
+
+        let red = CGFloat((rgb >> 16) & 0xFF) / 255.0
+        let green = CGFloat((rgb >> 8) & 0xFF) / 255.0
+        let blue = CGFloat(rgb & 0xFF) / 255.0
+        
+        self.init(red: red, green: green, blue: blue, alpha: 1.0)
+    }
 }

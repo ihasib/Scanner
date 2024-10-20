@@ -62,7 +62,7 @@ public final class ImageScannerController: UINavigationController {
     }
     
     public required init(image: UIImage? = nil, delegate: ImageScannerControllerDelegate? = nil) {
-        ScannerViewController.isBatchEnabled = false
+//        ScannerViewController.isBatchEnabled = false
         ScannerViewController.batchResult = [ImageScannerResults]()
         super.init(rootViewController: ScannerViewController())
         
