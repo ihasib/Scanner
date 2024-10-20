@@ -31,9 +31,97 @@ public final class ScannerViewController: UIViewController {
     
     private lazy var customNavigationBar: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
+        view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    
+    private lazy var cancelButton: UIButton = {
+        var image: UIImage!
+        if #available(iOS 13.0, *) {
+//            image = UIImage(s)
+            image = UIImage(named: "back", in: Bundle.module, compatibleWith: nil)
+        } else {
+            // Fallback on earlier versions
+        }
+        var button = UIButton()
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(cancelImageScannerController), for: .touchUpInside)
+//        button.tintColor = .violet
+//        button.backgroundColor = .cyan
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var captureOptionButton: UIButton = {
+        var image = UIImage(named: "captureOptions")
+        if #available(iOS 13.0, *) {
+            image = UIImage(named: "captureOptions", in: Bundle.module, with: nil)
+        } else {
+            // Fallback on earlier versions
+        }
+        var button = UIButton()
+        button.setImage(image, for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(cancelImageScannerController), for: .touchUpInside)
+//        button.tintColor = .violet
+//        button.backgroundColor = .cyan
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var flashButton2: UIButton = {
+        var image = UIImage(named: "flash4")
+        if #available(iOS 13.0, *) {
+            image = UIImage(named: "flash4", in: Bundle.module, with: nil)
+        } else {
+            // Fallback on earlier versions
+        }
+        var button = UIButton()
+        button.setImage(image, for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(cancelImageScannerController), for: .touchUpInside)
+//        button.tintColor = .violet
+//        button.backgroundColor = .cyan
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var autoScanButton2: UIButton = {
+        var image = UIImage(named: "autoManualSwitch")
+        if #available(iOS 13.0, *) {
+            image = UIImage(named: "autoManualSwitch", in: Bundle.module, with: nil)
+        } else {
+            // Fallback on earlier versions
+        }
+        var button = UIButton()
+        button.setImage(image, for: .normal)
+        button.setTitle("Auto Capture", for: .normal)
+        button.setTitleColor(.violet, for: .normal) // Set the title color
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0) // Add some spacing between the image and text
+        
+        button.addTarget(self, action: #selector(cancelImageScannerController), for: .touchUpInside)
+//        button.tintColor = .violet
+//        button.backgroundColor = .cyan
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        button.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        button.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        button.imageView?.tintColor = .violet
+        return button
+    }()
+    
+    private lazy var doneButton: UIButton = {
+        var button = UIButton()
+        button.setTitle("DONE", for: .normal)
+        button.setTitleColor(.violet, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        
+        button.addTarget(self, action: #selector(cancelImageScannerController), for: .touchUpInside)
+        button.tintColor = .violet
+//        button.backgroundColor = .cyan
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     private lazy var previewView: UIView = {
@@ -197,14 +285,6 @@ public final class ScannerViewController: UIViewController {
         button.isHidden = true
         return button
     }()
-    
-    private lazy var cancelButton: UIButton = {
-        let button = UIButton()
-        button.setTitle(NSLocalizedString("wescan.scanning.cancel", tableName: nil, bundle: Bundle(for: ScannerViewController.self), value: "Cancel", comment: "The cancel button"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(cancelImageScannerController), for: .touchUpInside)
-        return button
-    }()
 
     private lazy var autoScanButton: UIBarButtonItem = {
         let title = NSLocalizedString("wescan.scanning.auto", tableName: nil, bundle: Bundle(for: ScannerViewController.self), value: "Auto", comment: "The auto button state")
@@ -274,6 +354,15 @@ public final class ScannerViewController: UIViewController {
 
         videoPreviewLayer.frame = previewView.layer.bounds
         
+        
+        cancelButton.leadingAnchor.constraint(equalTo: customNavigationBar.leadingAnchor, constant: customNavigationBar.frame.width * (10/430)).isActive = true
+        captureOptionButton.leadingAnchor.constraint(equalTo: cancelButton.trailingAnchor, constant: customNavigationBar.frame.width * (15/430)).isActive = true
+        flashButton2.leadingAnchor.constraint(equalTo: captureOptionButton.trailingAnchor, constant: customNavigationBar.frame.width * (15/430)).isActive = true
+        autoScanButton2.leadingAnchor.constraint(equalTo: flashButton2.trailingAnchor, constant: customNavigationBar.frame.width * (15/430)).isActive = true
+        doneButton.leadingAnchor.constraint(equalTo: autoScanButton2.trailingAnchor, constant: customNavigationBar.frame.width * (15/430)).isActive = true
+        doneButton.trailingAnchor.constraint(equalTo: customNavigationBar.trailingAnchor, constant: customNavigationBar.frame.width * (-15/430)).isActive = true
+
+        
         shutterButton.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: lowerView.frame.height * (35/176)).isActive = true
         batchShowView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -lowerView.frame.width * (21/430)).isActive = true
         
@@ -284,6 +373,8 @@ public final class ScannerViewController: UIViewController {
         popupBottom.topAnchor.constraint(equalTo: previewView.topAnchor, constant: previewView.frame.height * (390/642)).isActive = true
         popupBottom.widthAnchor.constraint(equalToConstant: previewView.frame.width * (389/430)).isActive = true
         popupBottom.heightAnchor.constraint(equalToConstant: previewView.frame.height * (232/642)).isActive = true
+        
+        
         view.layoutIfNeeded()
     }
 
@@ -337,11 +428,49 @@ public final class ScannerViewController: UIViewController {
             customNavigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             customNavigationBar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             customNavigationBar.widthAnchor.constraint(equalTo: view.widthAnchor),
-            customNavigationBar.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: (77/932))
+//            customNavigationBar.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: (77/932))
+            customNavigationBar.heightAnchor.constraint(equalToConstant: 50)
         ]
         
-
-        NSLayoutConstraint.activate(customNavigationBarConstraints)
+        customNavigationBar.addSubview(cancelButton)
+        customNavigationBar.addSubview(captureOptionButton)
+        customNavigationBar.addSubview(flashButton2)
+        customNavigationBar.addSubview(autoScanButton2)
+        customNavigationBar.addSubview(doneButton)
+        
+        let cancelButtonConstrants = [
+            cancelButton.centerYAnchor.constraint(equalTo: customNavigationBar.centerYAnchor),
+            cancelButton.heightAnchor.constraint(equalTo: customNavigationBar.heightAnchor, multiplier: (30/60)),
+            cancelButton.widthAnchor.constraint(equalTo: cancelButton.heightAnchor)
+        ]
+        
+        let captureOptionButtonConstrants = [
+            captureOptionButton.centerYAnchor.constraint(equalTo: customNavigationBar.centerYAnchor),
+            captureOptionButton.heightAnchor.constraint(equalTo: customNavigationBar.heightAnchor, multiplier: (30/60)),
+            captureOptionButton.widthAnchor.constraint(equalTo: captureOptionButton.heightAnchor)
+        ]
+        
+        let flashButton2Constrants = [
+            flashButton2.centerYAnchor.constraint(equalTo: customNavigationBar.centerYAnchor),
+            flashButton2.heightAnchor.constraint(equalTo: customNavigationBar.heightAnchor, multiplier: (30/60)),
+            flashButton2.widthAnchor.constraint(equalTo: captureOptionButton.heightAnchor)
+        ]
+        
+        let autoScanButton2Constrants = [
+            autoScanButton2.centerYAnchor.constraint(equalTo: customNavigationBar.centerYAnchor),
+            autoScanButton2.heightAnchor.constraint(equalTo: customNavigationBar.heightAnchor, multiplier: (30/60)),
+            autoScanButton2.widthAnchor.constraint(lessThanOrEqualTo: customNavigationBar.widthAnchor, multiplier: (170/430))
+        ]
+        
+        let doneButtonConstrants = [
+            doneButton.centerYAnchor.constraint(equalTo: customNavigationBar.centerYAnchor),
+            doneButton.heightAnchor.constraint(equalTo: customNavigationBar.heightAnchor, multiplier: (30/60)),
+            doneButton.widthAnchor.constraint(equalTo: customNavigationBar.widthAnchor, multiplier: (70/430))
+        ]
+        
+        autoScanButton2.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+//        autoScanButton2.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        NSLayoutConstraint.activate(customNavigationBarConstraints + cancelButtonConstrants + captureOptionButtonConstrants + flashButton2Constrants + autoScanButton2Constrants + doneButtonConstrants)
     }
 
     private func setupConstraints() {
