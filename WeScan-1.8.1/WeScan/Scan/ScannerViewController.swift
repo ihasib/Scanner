@@ -134,7 +134,7 @@ public final class ScannerViewController: UIViewController {
     private lazy var popupTop: UIView = {
         let view = UIView()
         view.backgroundColor = .violet.withAlphaComponent(0.7)
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 14
         view.translatesAutoresizingMaskIntoConstraints = false
         
         var image = UIImage(named: "warning")
@@ -147,13 +147,15 @@ public final class ScannerViewController: UIViewController {
         view.addSubview(imageView)
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 2).isActive = true
-        imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
-        imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -2).isActive = true
+        imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12).isActive = true
+        imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: (15/38)).isActive = true
         imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
         
         let label = UILabel()
         label.text = "Please move closer"
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         view.addSubview(label)
         
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -171,22 +173,15 @@ public final class ScannerViewController: UIViewController {
         
         let titlelabel = UILabel()
         titlelabel.text = "Scan Your Document"
-        view.addSubview(titlelabel)
-        titlelabel.translatesAutoresizingMaskIntoConstraints = false
-        titlelabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        titlelabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 5).isActive = true
+        titlelabel.textColor = .white
+        titlelabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         
         let descriptionlabel = UILabel()
         descriptionlabel.text = "Center the document on the screen. A box might appear to help with adjustments"
         descriptionlabel.font = UIFont.systemFont(ofSize: 12)
         descriptionlabel.numberOfLines = 0
+        descriptionlabel.textColor = .white
         descriptionlabel.textAlignment = .center
-        view.addSubview(descriptionlabel)
-        descriptionlabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionlabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        descriptionlabel.topAnchor.constraint(equalTo: titlelabel.bottomAnchor, constant: 5).isActive = true
-        descriptionlabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-        
         
         var image = UIImage(named: "doc")
         if #available(iOS 13.0, *) {
@@ -195,12 +190,6 @@ public final class ScannerViewController: UIViewController {
             // Fallback on earlier versions
         }
         let imageView = UIImageView(image: image)
-        view.addSubview(imageView)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.topAnchor.constraint(equalTo: descriptionlabel.bottomAnchor, constant: 2).isActive = true
-        imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: (60/232)).isActive = true
-        imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
         
         let button = UIButton()
         button.setTitle("Got it!", for: .normal)
@@ -208,13 +197,39 @@ public final class ScannerViewController: UIViewController {
         button.backgroundColor = .white
         button.layer.cornerRadius = 3
         button.addTarget(self, action: #selector(gotItButtonTapped), for: .touchUpInside)
-        view.addSubview(button)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        button.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5).isActive = true
-        button.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: (27/232)).isActive = true
-        button.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: (27/68)).isActive = true
         
+        view.addSubview(titlelabel)
+        view.addSubview(descriptionlabel)
+        view.addSubview(imageView)
+        view.addSubview(button)
+        titlelabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionlabel.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        let titleLabelConstraints = [
+            titlelabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ]
+        
+        let descriptionlabelConstraints = [
+            descriptionlabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            descriptionlabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
+            descriptionlabel.bottomAnchor.constraint(lessThanOrEqualTo: imageView.topAnchor)
+        ]
+        
+        let imageViewConstraints = [
+            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: (60/232)),
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor)
+        ]
+        
+        let buttonConstraints = [
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: (27/232)),
+            button.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: (27/68))
+        ]
+        
+        NSLayoutConstraint.activate(titleLabelConstraints + descriptionlabelConstraints + imageViewConstraints + buttonConstraints)
         return view
     }()
 
@@ -361,7 +376,7 @@ public final class ScannerViewController: UIViewController {
         autoScanButton2.leadingAnchor.constraint(equalTo: flashButton2.trailingAnchor, constant: customNavigationBar.frame.width * (15/430)).isActive = true
         doneButton.leadingAnchor.constraint(equalTo: autoScanButton2.trailingAnchor, constant: customNavigationBar.frame.width * (15/430)).isActive = true
         doneButton.trailingAnchor.constraint(equalTo: customNavigationBar.trailingAnchor, constant: customNavigationBar.frame.width * (-15/430)).isActive = true
-
+        
         
         shutterButton.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: lowerView.frame.height * (35/176)).isActive = true
         batchShowView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -lowerView.frame.width * (21/430)).isActive = true
@@ -374,6 +389,18 @@ public final class ScannerViewController: UIViewController {
         popupBottom.widthAnchor.constraint(equalToConstant: previewView.frame.width * (389/430)).isActive = true
         popupBottom.heightAnchor.constraint(equalToConstant: previewView.frame.height * (232/642)).isActive = true
         
+        
+        
+        let popupBottomHeight = previewView.frame.height * (232/642)
+        let titleLabel = popupBottom.subviews[0]
+        let descriptionLabel = popupBottom.subviews[1]
+        let docImageView = popupBottom.subviews[2]
+        let gotItButton = popupBottom.subviews[3]
+
+        titleLabel.topAnchor.constraint(equalTo: popupBottom.topAnchor, constant: popupBottomHeight * (18/232)).isActive = true
+        descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: popupBottomHeight * (16/232)).isActive = true
+        docImageView.bottomAnchor.constraint(equalTo: gotItButton.topAnchor, constant: popupBottomHeight * (-18/232)).isActive = true
+        gotItButton.bottomAnchor.constraint(equalTo: popupBottom.bottomAnchor, constant: popupBottomHeight * (-18/232)).isActive = true
         
         view.layoutIfNeeded()
     }
