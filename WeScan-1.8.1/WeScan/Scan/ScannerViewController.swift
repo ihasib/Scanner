@@ -218,7 +218,7 @@ public final class ScannerViewController: UIViewController {
         
         let descriptionlabelConstraints = [
             descriptionlabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            descriptionlabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
+            descriptionlabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.65),
             descriptionlabel.bottomAnchor.constraint(lessThanOrEqualTo: imageView.topAnchor)
         ]
         
@@ -403,10 +403,10 @@ public final class ScannerViewController: UIViewController {
         let docImageView = popupBottom.subviews[2]
         let gotItButton = popupBottom.subviews[3]
 
-        titleLabel.topAnchor.constraint(equalTo: popupBottom.topAnchor, constant: popupBottomHeight * (18/232)).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: popupBottom.topAnchor, constant: popupBottomHeight * (20/232)).isActive = true
         descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: popupBottomHeight * (16/232)).isActive = true
-        docImageView.bottomAnchor.constraint(equalTo: gotItButton.topAnchor, constant: popupBottomHeight * (-18/232)).isActive = true
-        gotItButton.bottomAnchor.constraint(equalTo: popupBottom.bottomAnchor, constant: popupBottomHeight * (-18/232)).isActive = true
+        docImageView.bottomAnchor.constraint(equalTo: gotItButton.topAnchor, constant: popupBottomHeight * (-20/232)).isActive = true
+        gotItButton.bottomAnchor.constraint(equalTo: popupBottom.bottomAnchor, constant: popupBottomHeight * (-25/232)).isActive = true
         
         view.layoutIfNeeded()
     }
