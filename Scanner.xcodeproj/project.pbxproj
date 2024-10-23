@@ -13,6 +13,7 @@
 		644EDFEB2C764F4600DF0938 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644EDFE92C764F4600DF0938 /* Main.storyboard */; };
 		644EDFED2C764F4900DF0938 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 644EDFEC2C764F4900DF0938 /* Assets.xcassets */; };
 		644EDFF02C764F4900DF0938 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644EDFEE2C764F4900DF0938 /* LaunchScreen.storyboard */; };
+		648578412CC8874E0001424C /* Roboto in Resources */ = {isa = PBXBuildFile; fileRef = 648578402CC8874E0001424C /* Roboto */; };
 		6492331C2CB58D1200A7E5D2 /* pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 6492331B2CB58D1200A7E5D2 /* pic.png */; };
 		64B905822C846C160062AA01 /* WeScan in Frameworks */ = {isa = PBXBuildFile; productRef = 64B905812C846C160062AA01 /* WeScan */; };
 /* End PBXBuildFile section */
@@ -27,6 +28,7 @@
 		644EDFEC2C764F4900DF0938 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		644EDFEF2C764F4900DF0938 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		644EDFF12C764F4900DF0938 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		648578402CC8874E0001424C /* Roboto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Roboto; sourceTree = "<group>"; };
 		6492331B2CB58D1200A7E5D2 /* pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pic.png; path = ../../pic.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +73,7 @@
 		644EDFE22C764F4600DF0938 /* Scanner */ = {
 			isa = PBXGroup;
 			children = (
+				6485783F2CC887190001424C /* Resource */,
 				6492331B2CB58D1200A7E5D2 /* pic.png */,
 				644EDFE32C764F4600DF0938 /* AppDelegate.swift */,
 				644EDFE52C764F4600DF0938 /* SceneDelegate.swift */,
@@ -81,6 +84,14 @@
 				644EDFF12C764F4900DF0938 /* Info.plist */,
 			);
 			path = Scanner;
+			sourceTree = "<group>";
+		};
+		6485783F2CC887190001424C /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				648578402CC8874E0001424C /* Roboto */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		64B905802C846C160062AA01 /* Frameworks */ = {
@@ -153,6 +164,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				648578412CC8874E0001424C /* Roboto in Resources */,
 				644EDFF02C764F4900DF0938 /* LaunchScreen.storyboard in Resources */,
 				644EDFED2C764F4900DF0938 /* Assets.xcassets in Resources */,
 				6492331C2CB58D1200A7E5D2 /* pic.png in Resources */,

@@ -317,7 +317,7 @@
         <image name="Vector" width="20" height="20"/>
         <image name="Vector-1" width="75" height="60"/>
         <namedColor name="SlideVBackColor">
-            <color white="0.90260541439056396" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color white="0.90299999713897705" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

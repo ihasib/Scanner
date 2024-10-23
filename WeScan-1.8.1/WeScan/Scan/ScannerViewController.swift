@@ -97,6 +97,7 @@ public final class ScannerViewController: UIViewController {
         var button = UIButton()
         button.setImage(image, for: .normal)
         button.setTitle("Auto Capture", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         button.setTitleColor(.violet, for: .normal) // Set the title color
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0) // Add some spacing between the image and text
         
@@ -113,9 +114,9 @@ public final class ScannerViewController: UIViewController {
     
     private lazy var doneButton: UIButton = {
         var button = UIButton()
-        button.setTitle("DONE", for: .normal)
+        button.setTitle("Done", for: .normal)
         button.setTitleColor(.violet, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         
         button.addTarget(self, action: #selector(cancelImageScannerController), for: .touchUpInside)
         button.tintColor = .violet
@@ -134,7 +135,7 @@ public final class ScannerViewController: UIViewController {
     private lazy var popupTop: UIView = {
         let view = UIView()
         view.backgroundColor = .violet.withAlphaComponent(0.7)
-        view.layer.cornerRadius = 14
+        view.layer.cornerRadius = 22
         view.translatesAutoresizingMaskIntoConstraints = false
         
         var image = UIImage(named: "warning")
@@ -155,7 +156,7 @@ public final class ScannerViewController: UIViewController {
         let label = UILabel()
         label.text = "Please move closer"
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         view.addSubview(label)
         
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -174,11 +175,12 @@ public final class ScannerViewController: UIViewController {
         let titlelabel = UILabel()
         titlelabel.text = "Scan Your Document"
         titlelabel.textColor = .white
+        titlelabel.font = UIFont(name: "Roboto-Regular", size: 16)
         titlelabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         
         let descriptionlabel = UILabel()
         descriptionlabel.text = "Center the document on the screen. A box might appear to help with adjustments"
-        descriptionlabel.font = UIFont.systemFont(ofSize: 12)
+        descriptionlabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         descriptionlabel.numberOfLines = 0
         descriptionlabel.textColor = .white
         descriptionlabel.textAlignment = .center
@@ -193,9 +195,12 @@ public final class ScannerViewController: UIViewController {
         
         let button = UIButton()
         button.setTitle("Got it!", for: .normal)
+//        button.titleLabel?.font = UIFont.fontNames(forFamilyName: "Roboto")
+//        button.titleLabel?.font = UIFont(name: "Subhead", size: 12)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .white
-        button.layer.cornerRadius = 3
+        button.layer.cornerRadius = 5
         button.addTarget(self, action: #selector(gotItButtonTapped), for: .touchUpInside)
         
         view.addSubview(titlelabel)
@@ -226,7 +231,7 @@ public final class ScannerViewController: UIViewController {
         let buttonConstraints = [
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             button.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: (27/232)),
-            button.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: (27/68))
+            button.widthAnchor.constraint(equalTo: button.heightAnchor, multiplier: (68/27))
         ]
         
         NSLayoutConstraint.activate(titleLabelConstraints + descriptionlabelConstraints + imageViewConstraints + buttonConstraints)
@@ -266,8 +271,8 @@ public final class ScannerViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.bottomAnchor.constraint(equalTo: batchShowView.bottomAnchor).isActive = true
         imageView.leadingAnchor.constraint(equalTo: batchShowView.leadingAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalTo: batchShowView.heightAnchor, multiplier: 0.9).isActive = true
-        imageView.widthAnchor.constraint(equalTo: batchShowView.widthAnchor, multiplier: 0.9).isActive = true
+        imageView.heightAnchor.constraint(equalTo: batchShowView.heightAnchor, multiplier: (70/77)).isActive = true
+        imageView.widthAnchor.constraint(equalTo: batchShowView.widthAnchor, multiplier: (70/77)).isActive = true
         return imageView
     }()
 
@@ -276,7 +281,7 @@ public final class ScannerViewController: UIViewController {
         label.text = "4"
         label.textColor = .black
         label.backgroundColor = .yellow
-        label.font = .boldSystemFont(ofSize: 14)
+        label.font = .systemFont(ofSize: 10, weight: .semibold)
         label.textAlignment = .center
         batchShowView.addSubview(label)
         
@@ -284,7 +289,7 @@ public final class ScannerViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.topAnchor.constraint(equalTo: batchShowView.topAnchor).isActive = true
         label.trailingAnchor.constraint(equalTo: batchShowView.trailingAnchor).isActive = true
-        label.heightAnchor.constraint(equalTo: batchShowView.heightAnchor, multiplier: 0.3).isActive = true
+        label.heightAnchor.constraint(equalTo: batchShowView.heightAnchor, multiplier: (15/77)).isActive = true
         label.widthAnchor.constraint(greaterThanOrEqualTo: label.heightAnchor).isActive = true
         label.layer.masksToBounds = true
         label.layer.cornerRadius =  3
@@ -380,6 +385,7 @@ public final class ScannerViewController: UIViewController {
         
         shutterButton.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: lowerView.frame.height * (35/176)).isActive = true
         batchShowView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -lowerView.frame.width * (21/430)).isActive = true
+        batchShowView.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: lowerView.frame.height * (29/176)).isActive = true
         
         popupTop.topAnchor.constraint(equalTo: customNavigationBar.bottomAnchor, constant: previewView.frame.height * (18/642)).isActive = true
         popupTop.widthAnchor.constraint(equalToConstant: previewView.frame.width * (378/430)).isActive = true
@@ -533,9 +539,8 @@ public final class ScannerViewController: UIViewController {
         ]
 
         batchShowViewConstraints = [
-            batchShowView.heightAnchor.constraint(equalTo: lowerView.heightAnchor, multiplier: (70/176)),
-            batchShowView.widthAnchor.constraint(equalTo: batchShowView.heightAnchor),
-            batchShowView.topAnchor.constraint(equalTo: shutterButton.topAnchor)
+            batchShowView.heightAnchor.constraint(equalTo: lowerView.heightAnchor, multiplier: (77/176)),
+            batchShowView.widthAnchor.constraint(equalTo: batchShowView.heightAnchor)
         ]
 
         activityIndicatorConstraints = [
