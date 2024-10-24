@@ -145,7 +145,7 @@ public final class ScannerViewController: UIViewController {
         var button = UIButton()
         button.setTitle("Done", for: .normal)
         button.setTitleColor(.violet, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Inter_18pt-SemiBold", size: 18)
+        button.titleLabel?.font = UIFont(name: "Inter18pt-SemiBold", size: 18)
         
         button.addTarget(self, action: #selector(cancelImageScannerController), for: .touchUpInside)
         button.tintColor = .violet
@@ -309,7 +309,7 @@ public final class ScannerViewController: UIViewController {
         label.text = "4"
         label.textColor = .black
         label.backgroundColor = .yellow
-        label.font = UIFont(name: "Inter_18pt-SemiBold", size: 10)
+        label.font = UIFont(name: "Inter18pt-SemiBold", size: 10)
         label.textAlignment = .center
         batchShowView.addSubview(label)
         
