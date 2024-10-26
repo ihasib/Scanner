@@ -110,6 +110,7 @@ public final class ScannerViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         view.addSubview(imageView)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(autoScanButton2Tapped)))
         
 //        
         label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -164,9 +165,7 @@ public final class ScannerViewController: UIViewController {
     private lazy var popupTop: UIView = {
         let view = UIView()
         view.backgroundColor = .violet.withAlphaComponent(0.7)
-        view.layer.cornerRadius = 22
         view.translatesAutoresizingMaskIntoConstraints = false
-        
         var image = UIImage(named: "warning")
         if #available(iOS 13.0, *) {
             image = UIImage(named: "warning", in: Bundle.module, with: nil)
@@ -246,7 +245,7 @@ public final class ScannerViewController: UIViewController {
         
         let descriptionlabelConstraints = [
             descriptionlabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            descriptionlabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.65),
+            descriptionlabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
             descriptionlabel.bottomAnchor.constraint(lessThanOrEqualTo: imageView.topAnchor)
         ]
         
@@ -426,6 +425,7 @@ public final class ScannerViewController: UIViewController {
         let popupTopHeight = previewView.frame.height * (38/642)
         popupTop.widthAnchor.constraint(equalToConstant: popupTopWidth).isActive = true
         popupTop.heightAnchor.constraint(equalToConstant: popupTopHeight).isActive = true
+        popupTop.layer.cornerRadius = 20 * (popupTopHeight/38)
         let imageView = popupTop.subviews[0]
         imageView.leadingAnchor.constraint(equalTo: popupTop.leadingAnchor, constant: popupTopWidth * (18/378)).isActive = true
         
@@ -442,7 +442,7 @@ public final class ScannerViewController: UIViewController {
         let gotItButton = popupBottom.subviews[3]
 
         titleLabel.topAnchor.constraint(equalTo: popupBottom.topAnchor, constant: popupBottomHeight * (20/232)).isActive = true
-        descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: popupBottomHeight * (16/232)).isActive = true
+        descriptionLabel.topAnchor.constraint(lessThanOrEqualTo: titleLabel.bottomAnchor, constant: popupBottomHeight * (16/232)).isActive = true
         docImageView.bottomAnchor.constraint(equalTo: gotItButton.topAnchor, constant: popupBottomHeight * (-20/232)).isActive = true
         gotItButton.bottomAnchor.constraint(equalTo: popupBottom.bottomAnchor, constant: popupBottomHeight * (-25/232)).isActive = true
         
@@ -530,14 +530,15 @@ public final class ScannerViewController: UIViewController {
         let autoScanButton2Constrants = [
             autoScanButton2.centerYAnchor.constraint(equalTo: customNavigationBar.centerYAnchor),
             autoScanButton2.heightAnchor.constraint(equalTo: customNavigationBar.heightAnchor, multiplier: (30/60)),
-            autoScanButton2.widthAnchor.constraint(equalTo: customNavigationBar.widthAnchor, multiplier: (184/430))
+            autoScanButton2.widthAnchor.constraint(equalTo: customNavigationBar.widthAnchor, multiplier: (178/430))
             //430 -(15+20+20+20+25+20+25+""+35+46+20) = 184
+            //according to UI guide 184, to adjust small device it's -6 = 178, n done button by +6: 52 instead of 46
         ]
         
         let doneButtonConstrants = [
             doneButton.centerYAnchor.constraint(equalTo: customNavigationBar.centerYAnchor),
             doneButton.heightAnchor.constraint(equalTo: customNavigationBar.heightAnchor, multiplier: (30/60)),
-            doneButton.widthAnchor.constraint(equalTo: customNavigationBar.widthAnchor, multiplier: (46/430))
+            doneButton.widthAnchor.constraint(equalTo: customNavigationBar.widthAnchor, multiplier: (52/430))
         ]
         
 //        autoScanButton2.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
@@ -687,6 +688,21 @@ public final class ScannerViewController: UIViewController {
     @objc private func gotItButtonTapped() {
         popupTop.isHidden = true
         popupBottom.isHidden = true
+    }
+    
+    @objc private func autoScanButton2Tapped() {
+        let label = autoScanButton2.subviews[0] as! UILabel
+        let imageView = autoScanButton2.subviews[1] as! UIImageView
+        
+        UIView.animate(withDuration: 0.5) {
+            if label.text?.first == "A" {
+                label.text = "Manual Capture"
+                imageView.transform = CGAffineTransform(scaleX: -1, y: 1)
+            } else {
+                label.text = "Auto Capture"
+                imageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+            }
+        }
     }
 
     @objc private func cancelImageScannerController() {
