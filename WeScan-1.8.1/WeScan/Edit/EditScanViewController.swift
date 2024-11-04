@@ -12,6 +12,63 @@ import AVFoundation
 /// The `EditScanViewController` offers an interface for the user to edit the detected quadrilateral.
 final class EditScanViewController: UIViewController {
     
+    // MARK: - Navigation Bar
+    private lazy var customNavigationBar: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var cancelButton2: UIButton = {
+        var image: UIImage!
+        if #available(iOS 13.0, *) {
+//            image = UIImage(s)
+            image = UIImage(named: "back", in: Bundle.module, compatibleWith: nil)
+        } else {
+            // Fallback on earlier versions
+        }
+        var button = UIButton()
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+//        button.tintColor = .violet
+        button.contentMode = .scaleAspectFit
+//        button.backgroundColor = .cyan
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var editingButton: UIButton = {
+        var image: UIImage!
+        if #available(iOS 13.0, *) {
+//            image = UIImage(s)
+            image = UIImage(named: "back", in: Bundle.module, compatibleWith: nil)
+        } else {
+            // Fallback on earlier versions
+        }
+        var button = UIButton()
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+//        button.tintColor = .violet
+        button.contentMode = .scaleAspectFit
+//        button.backgroundColor = .cyan
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var doneButton: UIButton = {
+        var button = UIButton()
+        button.setTitle("Done", for: .normal)
+        button.setTitleColor(.violet, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Inter18pt-SemiBold", size: 18)
+        
+        button.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+        button.tintColor = .violet
+//        button.backgroundColor = .cyan
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
@@ -220,6 +277,8 @@ final class EditScanViewController: UIViewController {
         return view
     }()
     
+    
+    
     /// The image the quadrilateral was detected on.
     private let image: UIImage
     
@@ -246,6 +305,7 @@ final class EditScanViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNavigationBar2()
         setupViews()
         setupConstraints()
         title = NSLocalizedString("wescan.edit.title", tableName: nil, bundle: Bundle(for: EditScanViewController.self), value: "Edit Scan", comment: "The title of the EditScanViewController")
@@ -287,9 +347,52 @@ final class EditScanViewController: UIViewController {
         view.backgroundColor = .cyan
     }
     
+    private func setupNavigationBar2() {
+        view.addSubview(customNavigationBar)
+        var customNavigationBarConstraints = [NSLayoutConstraint]()
+        customNavigationBarConstraints = [
+            customNavigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            customNavigationBar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            customNavigationBar.widthAnchor.constraint(equalTo: view.widthAnchor),
+//            customNavigationBar.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: (77/932))
+            customNavigationBar.heightAnchor.constraint(equalToConstant: 50)
+        ]
+        
+        customNavigationBar.addSubview(cancelButton2)
+        customNavigationBar.addSubview(editingButton)
+        customNavigationBar.addSubview(doneButton)
+        
+        let cancelButtonConstrants = [
+            cancelButton2.centerYAnchor.constraint(equalTo: customNavigationBar.centerYAnchor),
+            cancelButton2.heightAnchor.constraint(equalTo: cancelButton2.widthAnchor),
+            cancelButton2.widthAnchor.constraint(equalTo: customNavigationBar.widthAnchor, multiplier: (20/430)),
+            cancelButton2.leadingAnchor.constraint(equalTo: customNavigationBar.leadingAnchor)
+        ]
+        
+        let editingButtonConstrants = [
+            editingButton.centerYAnchor.constraint(equalTo: customNavigationBar.centerYAnchor),
+            editingButton.heightAnchor.constraint(equalTo: customNavigationBar.heightAnchor, multiplier: (30/60)),
+            editingButton.widthAnchor.constraint(equalTo: customNavigationBar.widthAnchor, multiplier: (178/430)),
+            editingButton.centerXAnchor.constraint(equalTo: customNavigationBar.centerXAnchor)
+            //430 -(15+20+20+20+25+20+25+""+35+46+20) = 184
+            //according to UI guide 184, to adjust small device it's -6 = 178, n done button by +6: 52 instead of 46
+        ]
+        
+        let doneButtonConstrants = [
+            doneButton.centerYAnchor.constraint(equalTo: customNavigationBar.centerYAnchor),
+            doneButton.heightAnchor.constraint(equalTo: customNavigationBar.heightAnchor, multiplier: (30/60)),
+            doneButton.widthAnchor.constraint(equalTo: customNavigationBar.widthAnchor, multiplier: (52/430)),
+            doneButton.trailingAnchor.constraint(equalTo: customNavigationBar.trailingAnchor)
+        ]
+        
+//        autoScanButton2.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+//        autoScanButton2.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        NSLayoutConstraint.activate(customNavigationBarConstraints + cancelButtonConstrants + editingButtonConstrants + doneButtonConstrants)
+    }
+    
     private func setupConstraints() {
         let imageViewConstraints = [
-            imageView.topAnchor.constraint(equalTo: view.topAnchor),
+            imageView.topAnchor.constraint(equalTo: customNavigationBar.bottomAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: lowerView.topAnchor, constant: -20),
             view.leadingAnchor.constraint(equalTo: imageView.leadingAnchor)
