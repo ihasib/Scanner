@@ -651,6 +651,16 @@ public final class ScannerViewController: UIViewController {
         shutterButton.isUserInteractionEnabled = false
         captureSessionManager?.capturePhoto()
 
+        var picture = UIImage(named: "pic")!
+        if #available(iOS 13.0, *) {
+            picture = UIImage(named: "pic", in: Bundle.main, with: nil)!
+        } else {
+            // Fallback on earlier versions
+        }
+        let editVC = EditScanViewController(image: picture, quad: nil)
+        navigationController?.pushViewController(editVC, animated: false)
+
+        shutterButton.isUserInteractionEnabled = true
     }
 
     @objc private func toggleAutoScan() {
