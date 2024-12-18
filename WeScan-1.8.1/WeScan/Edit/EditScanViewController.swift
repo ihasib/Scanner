@@ -19,7 +19,7 @@ final class EditScanViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+        
     private lazy var lowerView: UIView = {
         let view = UIView()
         view.backgroundColor = .violet
@@ -199,6 +199,8 @@ final class EditScanViewController: UIViewController {
         // MARK: - segment1
         let segment1 = UIView()
 //        segment1.backgroundColor = .gray
+        let viewOriginal = UITapGestureRecognizer(target: self, action: #selector(viewOriginalTapped))
+        segment1.addGestureRecognizer(viewOriginal)
         segment1.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(segment1)
         cropSegment1WidthConstraint = segment1.widthAnchor.constraint(equalToConstant: 0)
@@ -241,7 +243,9 @@ final class EditScanViewController: UIViewController {
         
         // MARK: - segment2
         let segment2 = UIView()
-//        segment2.backgroundColor = .gray
+        segment2.backgroundColor = .gray
+        let rotateLeft = UITapGestureRecognizer(target: self, action: #selector(rotateLeftTapped))
+        segment2.addGestureRecognizer(rotateLeft)
         segment2.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(segment2)
         let segment2Constraints = [
@@ -282,6 +286,8 @@ final class EditScanViewController: UIViewController {
         // MARK: - segment3
         let segment3 = UIView()
 //        segment3.backgroundColor = .gray
+        let rotateRight = UITapGestureRecognizer(target: self, action: #selector(rotateRightTapped))
+        segment3.addGestureRecognizer(rotateRight)
         segment3.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(segment3)
         let segment3Constraints = [
@@ -322,6 +328,8 @@ final class EditScanViewController: UIViewController {
         //---------------segment 4
         let segment4 = UIView()
 //        segment4.backgroundColor = .gray
+        let flip = UITapGestureRecognizer(target: self, action: #selector(flipTapped))
+        segment4.addGestureRecognizer(flip)
         segment4.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(segment4)
         let segment4Constraints = [
@@ -404,7 +412,7 @@ final class EditScanViewController: UIViewController {
         imageView.clipsToBounds = true
         imageView.isOpaque = true
         imageView.image = image
-        imageView.backgroundColor = .red
+//        imageView.backgroundColor = .red
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -413,7 +421,8 @@ final class EditScanViewController: UIViewController {
     private lazy var quadView: QuadrilateralView = {
         let quadView = QuadrilateralView()
         quadView.editable = true
-        quadView.backgroundColor = .yellow
+//        quadView.isHidden = true
+//        quadView.backgroundColor = .yellow
         quadView.translatesAutoresizingMaskIntoConstraints = false
         return quadView
     }()
@@ -451,10 +460,14 @@ final class EditScanViewController: UIViewController {
     private var quadViewWidthConstraint = NSLayoutConstraint()
     private var quadViewHeightConstraint = NSLayoutConstraint()
     
+    private var rotationAngle = Measurement<UnitAngle>(value: 0, unit: .degrees)
+    var flipTrack = 1.0
+    
     // MARK: - Life Cycle
     
     init(image: UIImage, quad: Quadrilateral?, rotateImage: Bool = true) {
         self.image = rotateImage ? image.applyingPortraitOrientation() : image
+//        self.image = image
         self.quad = quad ?? EditScanViewController.defaultQuad(forImage: image)
         super.init(nibName: nil, bundle: nil)
     }
@@ -463,6 +476,7 @@ final class EditScanViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+
     override public func viewDidLoad() {
         super.viewDidLoad()
         
@@ -481,7 +495,9 @@ final class EditScanViewController: UIViewController {
         
         let touchDown = UILongPressGestureRecognizer(target: zoomGestureController, action: #selector(zoomGestureController.handle(pan:)))
         touchDown.minimumPressDuration = 0
-        view.addGestureRecognizer(touchDown)
+//        view.addGestureRecognizer(touchDown)
+        quadView.addGestureRecognizer(touchDown)
+        
     }
     
     override public func viewDidLayoutSubviews() {
@@ -503,11 +519,14 @@ final class EditScanViewController: UIViewController {
     // MARK: - Setups
     
     private func setupViews() {
+        view.backgroundColor = .white
         view.addSubview(imageView)
         view.addSubview(quadView)
         view.addSubview(lowerView)
         view.addSubview(cropLowerView)
-        view.backgroundColor = .cyan
+//        quadView.isHidden = true
+//        cropLowerView.isHidden = true
+//        view.backgroundColor = .cyan
     }
     
     
@@ -517,15 +536,17 @@ final class EditScanViewController: UIViewController {
             imageView.topAnchor.constraint(equalTo: customNavigationBar.bottomAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: cropLowerView.topAnchor),
-            view.leadingAnchor.constraint(equalTo: imageView.leadingAnchor)
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         ]
         
         quadViewWidthConstraint = quadView.widthAnchor.constraint(equalToConstant: 0.0)
         quadViewHeightConstraint = quadView.heightAnchor.constraint(equalToConstant: 0.0)
         
         let quadViewConstraints = [
-            quadView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            quadView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            quadView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+            quadView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
+//            quadView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            quadView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             quadViewWidthConstraint,
             quadViewHeightConstraint
         ]
@@ -552,6 +573,77 @@ final class EditScanViewController: UIViewController {
         if let imageScannerController = navigationController as? ImageScannerController {
             imageScannerController.imageScannerDelegate?.imageScannerControllerDidCancel(imageScannerController)
         }
+    }
+    
+    @objc func rotateLeftTapped() {
+        print(#function)
+        rotationAngle.value = -90
+        imageView.image = imageView.image?.rotated(by: rotationAngle)
+//        imageView.transform = CGAffineTransform(rotationAngle: rotationAngle * (.pi/2))
+//        imageView.image?.
+//        imageView.image = imageView.image?.applyingPortraitOrientation()
+        
+//        imageView.image? = .left
+//        let orientatedImage = UIImage(cgImage: imageView.image!.cgImage!, scale: 1.0, orientation: .up)
+//        imageView.image = orientatedImage
+//        let image = imageView.image?.applyingPortraitOrientation()
+//        imageView.image = image
+    }
+    
+    
+    @objc func viewOriginalTapped() {
+        print(#function)
+//        rotationAngle = 0
+//        flipTrack = 1.0
+//        imageView.transform = CGAffineTransform.identity
+        imageView.image = getCroppedImage()
+        quadView.isHidden = true
+    }
+    
+    @objc func rotateRightTapped() {
+        print(#function)
+//        rotationAngle += 1
+//        imageView.transform = CGAffineTransform(rotationAngle: rotationAngle * .pi/2)
+        rotationAngle.value = 90
+        imageView.image = imageView.image?.rotated(by: rotationAngle)
+    }
+    
+    @objc func flipTapped() {
+        print(#function)
+//        rotationAngle = 0//reset
+//        flipTrack *= (-1)
+//        imageView.transform = CGAffineTransform(scaleX: 1, y: flipTrack)
+        rotationAngle.value = 0
+        imageView.image = imageView.image?.rotated(by: rotationAngle, options: [.flipOnVerticalAxis])
+    }
+    
+    func getCroppedImage() -> UIImage? {
+        guard let quad = quadView.quad,
+            let ciImage = CIImage(image: image) else {
+                if let imageScannerController = navigationController as? ImageScannerController {
+                    let error = ImageScannerControllerError.ciImageCreation
+                    imageScannerController.imageScannerDelegate?.imageScannerController(imageScannerController, didFailWithError: error)
+                }
+                return nil
+        }
+        let cgOrientation = CGImagePropertyOrientation(image.imageOrientation)
+        let orientedImage = ciImage.oriented(forExifOrientation: Int32(cgOrientation.rawValue))
+        let scaledQuad = quad.scale(quadView.bounds.size, image.size)
+        self.quad = scaledQuad
+        
+        // Cropped Image
+        var cartesianScaledQuad = scaledQuad.toCartesian(withHeight: image.size.height)
+        cartesianScaledQuad.reorganize()
+        
+        let filteredImage = orientedImage.applyingFilter("CIPerspectiveCorrection", parameters: [
+            "inputTopLeft": CIVector(cgPoint: cartesianScaledQuad.bottomLeft),
+            "inputTopRight": CIVector(cgPoint: cartesianScaledQuad.bottomRight),
+            "inputBottomLeft": CIVector(cgPoint: cartesianScaledQuad.topLeft),
+            "inputBottomRight": CIVector(cgPoint: cartesianScaledQuad.topRight)
+        ])
+        
+        let croppedImage = UIImage.from(ciImage: filteredImage)
+        return croppedImage
     }
     
     @objc func pushReviewController() {

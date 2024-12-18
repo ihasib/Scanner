@@ -657,8 +657,8 @@ public final class ScannerViewController: UIViewController {
         } else {
             // Fallback on earlier versions
         }
-        let editVC = EditScanViewController(image: picture, quad: nil)
-        navigationController?.pushViewController(editVC, animated: false)
+//        let editVC = EditScanViewController(image: picture, quad: nil)
+//        navigationController?.pushViewController(editVC, animated: false)
 
         shutterButton.isUserInteractionEnabled = true
     }
